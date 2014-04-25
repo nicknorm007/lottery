@@ -5,6 +5,9 @@ Lottery::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'lottery#index', as: 'lottery'
 
+  get "lottery/pick4"
+  get "lottery/combo"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
