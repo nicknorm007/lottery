@@ -1,1 +1,10 @@
-<h1>Hello from pick4</h1>
+<%= form_tag('/lottery/pick4') do %>
+    <div class="lotterylabels">
+      Select the number of balls drawn:
+    </div>
+    <%= radio_button_tag(:pick, "pick4") %>
+    <%= label_tag(:pick_pick4, "4 Ball Draw") %>
+    <%= radio_button_tag(:pick, "pick3") %>
+    <%= label_tag(:pick_pick3, "3 Ball Draw") %>
+
+<% end -%>

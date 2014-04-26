@@ -1,11 +1,15 @@
 Lottery::Application.routes.draw do
+  resources :accounts
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'lottery#index', as: 'lottery'
 
+
   get "lottery/pick4"
+  post "lottery/pick4"
   get "lottery/combo"
 
   # Example of regular route:
