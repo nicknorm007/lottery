@@ -6,3 +6,7 @@
 $(document).on "ready page:change", ->
   $('#bag').click (e) ->
     window.location.href = "/"
+
+$ ->
+  $(".datepicker").datepicker()
+  return
