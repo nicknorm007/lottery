@@ -1,4 +1,4 @@
-<%= form_tag('/lottery/pick4') do %>
+<%= form_tag('/lottery/pick4results') do %>
     <div class="lotterylabels">
       Select the number of balls drawn, then select the end date to stop playing:
     </div>
@@ -8,7 +8,10 @@
     <%= label_tag(:pick_pick3, "3 Ball Draw") %>
     </br>
     </br>
-    <div class="datepicker"></div>
+    <div class="lotterylabels">
+      Click here to select the end date:
+    </div>
+    <%= text_field(:pickdate, :enddate, class: "datepicker") %>
     </br>
     </br>
     <%= submit_tag "Generate your daily number!", class: "btn btn-primary" %>

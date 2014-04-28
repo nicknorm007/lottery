@@ -6,6 +6,9 @@ class LotteryController < ApplicationController
   def pick4
   end
 
+  def pick4results
+  end
+
   def combo
   end
 

@@ -5,12 +5,14 @@ Lottery::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'lottery#index', as: 'lottery'
+  root 'lottery#index'
 
-
+  get 'lottery', to: 'lottery#index', as: 'lottery'
   get "lottery/pick4"
-  post "lottery/pick4"
   get "lottery/combo"
+
+  post "lottery/pick4results"
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

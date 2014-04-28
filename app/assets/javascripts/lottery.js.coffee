@@ -5,7 +5,7 @@
 
 $(document).on "ready page:change", ->
   $('#bag').click (e) ->
-    window.location.href = "/"
+    window.location.href = "/lottery"
 
   $(".datepicker").datepicker()
     dateFormat: "yy-mm-dd"
