@@ -7,5 +7,12 @@ $(document).on "ready page:change", ->
   $('#bag').click (e) ->
     window.location.href = "/lottery"
 
-  $(".datepicker").datepicker()
-    dateFormat: "yy-mm-dd"
+  $(".datepicker").datepicker({
+    showOn: "button",
+    buttonImage: "/assets/calendar.gif",
+    buttonImageOnly: true
+    minDate: +1,
+    maxDate: "+1M +10D"
+    altField: "#recorded",
+    altFormat: "yy-mm-dd"
+  })
