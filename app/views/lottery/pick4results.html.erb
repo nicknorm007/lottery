@@ -1,14 +1,7 @@
 <div class="lotterylabels">
-  You have chosen to play the lottery for <%= number_of_days_to_play(0) %>
+  You have chosen to play the lottery daily until <%= (params[:pickdate]) %>.
+  This will be played for <%= number_of_days_to_play(params[:recorded]) %> days.
 </div>
-
-
-
-
-
-
-
-
 <br/>
 <h1>Params:</h1>
 <%= params.inspect %>
