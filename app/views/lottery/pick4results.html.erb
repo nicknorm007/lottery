@@ -3,5 +3,20 @@
   This will be played for <%= number_of_days_to_play(params[:recorded]) %> days.
 </div>
 <br/>
+<table class="table table-condensed table-bordered table-striped">
+  <tr>
+    <th>Week #</th>
+    <% (1..7).each do |tr|%>
+    <th>Day <%= tr %></th>
+    <% end %>
+  </tr>
+  <% 1.upto(weeks_to_play(number_of_days_to_play(params[:recorded]))) do |i| %>
+    <tr>
+      <td><%= i %></td>
+    </tr>
+
+  <% end %>
+
+</table>
 <h1>Params:</h1>
 <%= params.inspect %>
