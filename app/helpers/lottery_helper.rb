@@ -18,5 +18,17 @@ module LotteryHelper
     (number_of_days / 7.0).ceil
   end
 
+  def seven_or_remainder(num_weeks, days, week_num)
+    leftover = days % 7
+    if week_num == num_weeks
+      if leftover==0
+        return 7
+      else
+        return leftover
+      end
+    else
+      return 7
+    end
+  end
 
 end

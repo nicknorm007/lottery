@@ -6,9 +6,16 @@
     <%= label_tag(:pick_4, '4 Ball Draw') %>
     <%= radio_button_tag(:pick, '3') %>
     <%= label_tag(:pick_3, '3 Ball Draw') %>
+    <%= radio_button_tag(:pick, '2') %>
+    <%= label_tag(:pick_2, '2 Ball Draw') %>
+    <%= radio_button_tag(:pick, '1') %>
+    <%= label_tag(:pick_1, '1 Ball Draw') %>
     </br>
     </br>
     <div class="lotterylabels">
+      Enter the number you would like to play:
+      <%= text_field_tag(:lucky_num, nil, maxlength: 4, size: 4) %>
+      </br>
       Click the calendar to select the end date:
     </div>
     <%= text_field_tag(:pickdate, nil, :class => 'datepicker',:readonly => true) %>

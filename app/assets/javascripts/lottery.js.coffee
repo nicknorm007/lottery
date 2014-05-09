@@ -12,7 +12,7 @@ $(document).on "ready page:change", ->
     buttonImage: "/assets/calendar.gif",
     buttonImageOnly: true
     minDate: +1,
-    maxDate: "+1Y +10D"
+    maxDate: "+5Y +10D"
     altField: "#recorded",
     altFormat: "yy-mm-dd"
   })
