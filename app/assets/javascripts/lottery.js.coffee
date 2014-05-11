@@ -16,3 +16,11 @@ $(document).on "ready page:change", ->
     altField: "#recorded",
     altFormat: "yy-mm-dd"
   })
+
+  $("#pick4form").validate rules:
+    lucky_num:
+      required: true
+      minlength: 1
+    pickdate:
+      required: true
+      minlength: 1
