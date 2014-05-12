@@ -2,8 +2,9 @@
   <% @days = number_of_days_to_play(params[:recorded]) %>
   You have chosen to play the lottery daily until <%= (params[:pickdate]) %>.
   This will be played for <%= @days %> days.
+  <% @dayplay = Date.today %>
   <br/>
-  A winning number will be highlighted!
+  Any winning number will be highlighted with the date won!
 </div>
 <br/>
 <table class="table table-condensed table-bordered">
@@ -20,11 +21,14 @@
       <% 1.upto(seven_or_remainder(@weeks,@days,i)) do %>
         <% @picked = generate_pick_combo(params[:pick].to_i) %>
         <% if @picked == params[:lucky_num] %>
-            <td class="table-data-winner"><%= @picked %></td>
+            <td class="table-data-winner">Winning number on:<%= ((@dayplay).strftime("%m/%d/%Y")) %>  after <%=  (@dayplay - (Date.today)).to_i %> days.</td>
         <% else %>
             <td class="table-data-picked"><%= @picked %></td>
+            <% @dayplay += 1 %>
         <% end %>
       <% end %>
     </tr>
   <% end %>
 </table>
+<h1>Params:</h1>
+<%= params.inspect %>

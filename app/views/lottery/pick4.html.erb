@@ -16,8 +16,12 @@
       Enter the number you would like to play:
       <%= text_field_tag(:lucky_num, nil, maxlength: 4, size: 4, :id => 'lucky_num') %>
       </br>
-      Click the calendar to select the end date:
+      Click the calendar to select the end date or select to play until you win:
+      <br/>
+      <%= check_box_tag(:play_until_win) %>
+      <%= label_tag(:play_until_win, "I won't select an end date. Just play until I win!") %>
     </div>
+    <br/>
     <%= text_field_tag(:pickdate, nil, :class => 'datepicker',:readonly => true, :id => 'pickdate', :value=> (Date.today.strftime("%m/%d/%Y"))) %>
     <%= hidden_field_tag(:recorded) %>
     </br>
