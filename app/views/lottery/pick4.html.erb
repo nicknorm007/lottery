@@ -22,8 +22,11 @@
       <%= label_tag(:play_until_win, "I won't select an end date. Just play until I win!") %>
     </div>
     <br/>
-    <%= text_field_tag(:pickdate, nil, :class => 'datepicker',:readonly => true, :id => 'pickdate', :value=> (Date.today.strftime("%m/%d/%Y"))) %>
-    <%= hidden_field_tag(:recorded) %>
+    <br/>
+    <div class="lotterycalendar">
+      <%= text_field_tag(:pickdate, nil, :class => 'datepicker',:readonly => true, :id => 'pickdate', :value=> (Date.today.strftime("%m/%d/%Y"))) %>
+      <%= hidden_field_tag(:recorded) %>
+    </div>
     </br>
     </br>
     <%= submit_tag 'Generate your daily number(s)!', class: 'btn btn-primary' %>

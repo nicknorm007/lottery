@@ -17,4 +17,4 @@
 //= require jquery.validate.additional-methods
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
+//= require lottery

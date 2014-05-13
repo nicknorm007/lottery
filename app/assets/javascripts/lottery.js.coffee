@@ -24,3 +24,16 @@ $(document).on "ready page:change", ->
     pickdate:
       required: true
       minlength: 1
+
+
+  $("#play_until_win").click ->
+    if $(this).is(":checked")
+      $(".lotterycalendar").hide()
+    else
+      $(".lotterycalendar").show()
+
+
+
+
+
+
