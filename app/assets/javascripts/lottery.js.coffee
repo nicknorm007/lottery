@@ -15,7 +15,7 @@ $(document).on "ready page:change", ->
     maxDate: "+5Y +10D"
     altField: "#recorded",
     altFormat: "yy-mm-dd"
-  })
+  }).datepicker "setDate", new Date()
 
   $("#pick4form").validate rules:
     lucky_num:

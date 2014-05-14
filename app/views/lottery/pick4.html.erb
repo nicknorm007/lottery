@@ -19,16 +19,16 @@
       Click the calendar to select the end date or select to play until you win:
       <br/>
       <%= check_box_tag(:play_until_win) %>
-      <%= label_tag(:play_until_win, "I won't select an end date. Just play until I win!") %>
+      <%= label_tag(:play_until_win, "Don't select an end date. Just play until I win!") %>
     </div>
     <br/>
     <br/>
     <div class="lotterycalendar">
-      <%= text_field_tag(:pickdate, nil, :class => 'datepicker',:readonly => true, :id => 'pickdate', :value=> (Date.today.strftime("%m/%d/%Y"))) %>
+      <%= text_field_tag(:pickdate, nil, :class => 'datepicker',:readonly => true, :id => 'pickdate') %>
       <%= hidden_field_tag(:recorded) %>
     </div>
     </br>
     </br>
-    <%= submit_tag 'Generate your daily number(s)!', class: 'btn btn-primary' %>
-
+    <% params[:lucky_num] = "3333" %>
+    <%= submit_tag 'Generate your daily number(s)!', class: 'btn btn-primary', :id => 'generateBtn' %>
 <% end -%>
