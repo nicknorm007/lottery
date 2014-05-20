@@ -21,6 +21,7 @@ $(document).on "ready page:change", ->
     lucky_num:
       required: true
       minlength: 1
+      digits: true
     pickdate:
       required: true
       minlength: 1
