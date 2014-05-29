@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$(document).on "ready page:change", ->
+ready = ->
   $('#bag').click (e) ->
     window.location.href = "/lottery"
 
@@ -33,8 +33,16 @@ $(document).on "ready page:change", ->
     else
       $(".lotterycalendar").show()
 
+  $("#pick4form").submit (e) ->
+    picklength = ($("input[name='pick']:checked").val())
+    luckyLength = $("#lucky_num").val().length
+    isValid = (luckyLength == parseInt(picklength))
+    unless isValid
+      e.preventDefault()
+      e.stopPropagation()
+      alert "Length of number you play must match game type!"
 
-
-
+$(document).ready(ready)
+$(document).on('page:load', ready)
 
 
