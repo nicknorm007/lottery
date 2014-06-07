@@ -1,1 +1,31 @@
-<h1>Hello from combo</h1>
+<%= form_tag('/lottery/comboresults', :id => 'comboform') do %>
+    <div class="lotterylabels">
+      Select the number of balls to play, then select the number of the highest ball:
+    </div>
+    <%= radio_button_tag(:combo, '4', :checked => true) %>
+    <%= label_tag(:combo_4, '4 Balls') %>
+    <%= radio_button_tag(:combo, '5') %>
+    <%= label_tag(:combo_5, '5 Balls') %>
+    <%= radio_button_tag(:combo, '6') %>
+    <%= label_tag(:combo_6, '6 Balls') %>
+    </br>
+    </br>
+    <div class="lotterylabels">
+      Enter the number of the higest ball:
+      <%= text_field_tag(:higest_num, nil, maxlength: 2, size: 2, :id => 'highest_num') %>
+      </br>
+      Click the calendar to select the end date or select to play until you win:
+      <br/>
+      <%= check_box_tag(:play_until_win) %>
+      <%= label_tag(:play_until_win, "Don't select an end date. Just play until I win!") %>
+    </div>
+    <br/>
+    <br/>
+    <div class="lotterycalendar">
+      <%= text_field_tag(:pickdate, nil, :class => 'datepicker',:readonly => true, :id => 'pickdate') %>
+      <%= hidden_field_tag(:recorded) %>
+    </div>
+    </br>
+    </br>
+    <%= submit_tag 'Generate your combo number(s)!', class: 'btn btn-primary', :id => 'generateBtn' %>
+<% end -%>

@@ -12,4 +12,7 @@ class LotteryController < ApplicationController
   def combo
   end
 
+  def comboresults
+  end
+
 end

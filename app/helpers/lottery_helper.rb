@@ -31,4 +31,16 @@ module LotteryHelper
     end
   end
 
+  def generate_ball_combo(balls, highest)
+
+
+
+  end
+
+  def generate_odds_from_ball_combo(balls, highest)
+
+
+    
+  end
+
 end
