@@ -1,1 +1,7 @@
-<%= params.inspect %>
+<div class="lotterylabels">
+  <% @odds = generate_odds_from_ball_combo(params[:combo].to_i,params[:highest_num].to_i) %>
+  The odds of winning this game are <%= @odds %> to 1.
+  <br/>
+  <br/>
+  Here is a combination for you to play : <%= generate_ball_combo(params[:combo].to_i,params[:highest_num].to_i) %>
+</div>

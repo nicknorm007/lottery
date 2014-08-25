@@ -32,15 +32,20 @@ module LotteryHelper
   end
 
   def generate_ball_combo(balls, highest)
-
-
-
+    ball_arr = []
+    (1..highest).each do |n|
+      ball_arr.push(n)
+    end
+    ball_arr.combination(balls).to_a.length
   end
 
   def generate_odds_from_ball_combo(balls, highest)
-
-
-    
+    numerator = (1..highest).inject(:*) || 1
+    diff = highest - balls
+    denominator_part = (1..diff).inject(:*) || 1
+    denominator_multiplier = (1..balls).inject(:*) || 1
+    odds = numerator / (denominator_multiplier * denominator_part)
+    odds
   end
 
 end
