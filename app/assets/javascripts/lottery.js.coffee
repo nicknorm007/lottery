@@ -42,6 +42,13 @@ ready = ->
       e.stopPropagation()
       alert "Length of number you play must match game type!"
 
+  $("#winner").hover (->
+    $("#popup").show()
+    return
+  ), ->
+    $("#popup").hide()
+    return
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
 

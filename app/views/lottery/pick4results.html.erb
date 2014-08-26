@@ -27,7 +27,9 @@
             <% 1.upto(7) do %>
                 <% @picked = generate_pick_combo(params[:pick].to_i) %>
                 <% if @picked == params[:lucky_num] %>
-                    <td class="table-data-winner">Winning number on:<%= ((@dayplay).strftime("%m/%d/%Y")) %>  after <%=  (@dayplay - (Date.today)).to_i %> days.</td>
+                    <% @win = 'Winning number on: ' + ((@dayplay).strftime("%m/%d/%Y")).to_s + ' after ' + (@dayplay - (Date.today)).to_i.to_s + ' days.' %>
+                    <td id="winner" class="table-data-winner"><%= @picked %></td>
+                    <td id="popup"><%= @win %></td>
                     <% break %>
                 <% else %>
                     <td class="table-data-picked"><%= @picked %></td>
@@ -44,7 +46,9 @@
         <% 1.upto(seven_or_remainder(@weeks,@days,i)) do %>
             <% @picked = generate_pick_combo(params[:pick].to_i) %>
             <% if @picked == params[:lucky_num] %>
-                <td class="table-data-winner">Winning number on:<%= ((@dayplay).strftime("%m/%d/%Y")) %>  after <%=  (@dayplay - (Date.today)).to_i %> days.</td>
+                <% @win = 'Winning number on: ' + ((@dayplay).strftime("%m/%d/%Y")).to_s + ' after ' + (@dayplay - (Date.today)).to_i.to_s + ' days.' %>
+                <td id="winner" class="table-data-winner"><%= @picked %></td>
+                <td id="popup"><%= @win %></td>
             <% else %>
                 <td class="table-data-picked"><%= @picked %></td>
                 <% @dayplay += 1 %>
