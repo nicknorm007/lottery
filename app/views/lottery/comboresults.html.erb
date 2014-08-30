@@ -12,7 +12,7 @@
   </tr>
   </table>
   <br/>
-  <button name="button" id="simulate" class="btn btn-primary">Simulate how long it takes to win!</button>
+  <%= link_to "Simulate how long it takes to win!", lottery_simulate_path(balls: params[:combo], highest: params[:highest_num] ), :remote => true , :id => "simulate" , :class => "btn btn-primary" , method: :post %>
   <br>
   <br>
   <div id="simresults"></div>

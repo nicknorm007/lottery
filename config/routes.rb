@@ -12,6 +12,7 @@ Lottery::Application.routes.draw do
   get "lottery/combo"
   post "lottery/comboresults"
   post "lottery/pick4results"
+  post "lottery/simulate"
 
 
   # Example of regular route:
