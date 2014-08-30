@@ -3,11 +3,11 @@
   <% @dayplay = Date.today %>
   <% if params[:play_until_win] %>
       You have chosen to play the lottery daily until you win!
-      The winning number and date will be highlighted.
+      The winning number and date will be highlighted.  Hover over the winning number to see additional info.
      <% else %>
       You have chosen to play the lottery daily until <%= (params[:pickdate]) %>.
       This will be played for <%= @days %> days.
-      Any winning number will be highlighted with the date won!
+      Any winning number will be highlighted with the date won!  Hover over the winning number to see additional info.
       <% end %>
   <br/>
 </div>
@@ -28,8 +28,8 @@
                 <% @picked = generate_pick_combo(params[:pick].to_i) %>
                 <% if @picked == params[:lucky_num] %>
                     <% @win = 'Winning number on: ' + ((@dayplay).strftime("%m/%d/%Y")).to_s + ' after ' + (@dayplay - (Date.today)).to_i.to_s + ' days.' %>
+                    <div id="popup"><%= @win %></div>
                     <td id="winner" class="table-data-winner"><%= @picked %></td>
-                    <td id="popup"><%= @win %></td>
                     <% break %>
                 <% else %>
                     <td class="table-data-picked"><%= @picked %></td>
@@ -47,8 +47,8 @@
             <% @picked = generate_pick_combo(params[:pick].to_i) %>
             <% if @picked == params[:lucky_num] %>
                 <% @win = 'Winning number on: ' + ((@dayplay).strftime("%m/%d/%Y")).to_s + ' after ' + (@dayplay - (Date.today)).to_i.to_s + ' days.' %>
-                <td id="winner" class="table-data-winner"><%= @picked %></td>
-                <td id="popup"><%= @win %></td>
+                  <td id="popup"><%= @win %></td>
+                  <td id="winner" class="table-data-winner"><%= @picked %></td>
             <% else %>
                 <td class="table-data-picked"><%= @picked %></td>
                 <% @dayplay += 1 %>
@@ -58,4 +58,5 @@
     <% end %>
   <% end %>
 </table>
+
 

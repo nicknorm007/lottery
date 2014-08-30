@@ -49,6 +49,13 @@ ready = ->
     $("#popup").hide()
     return
 
+  $("#simulate").click ->
+    $.ajax
+      type: "POST"
+      url: "/lottery/comboresults"
+      success: ->
+        $("#simresults").text( "Here is some two text!")
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
 

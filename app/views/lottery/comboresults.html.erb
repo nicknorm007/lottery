@@ -3,7 +3,7 @@
   The odds of winning this game are <%= @odds %> to 1.
   <% @combo = generate_ball_combo(params[:combo].to_i,params[:highest_num].to_i) %>
   <br/>
-  Here is a combination for you to play :
+  Here is a combination for you :
   <table class="table table-condensed table-bordered">
   <tr>
     <% 1.upto(params[:combo].to_i).each do |n| %>
@@ -11,4 +11,9 @@
     <% end %>
   </tr>
   </table>
+  <br/>
+  <button name="button" id="simulate" class="btn btn-primary">Simulate how long it takes to win!</button>
+  <br>
+  <br>
+  <div id="simresults"></div>
 </div>

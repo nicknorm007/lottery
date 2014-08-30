@@ -33,13 +33,28 @@ module LotteryHelper
 
   def generate_ball_combo(balls, highest)
     ball_arr = []
-    combo_arr = []
     (1..highest).each do |n|
       ball_arr.push(n)
     end
     combo_arr = ball_arr.combination(balls).to_a
     selection = rand(0..combo_arr.length-1)
     combo_arr[selection]
+  end
+
+  def try_to_match(balls, highest)
+    ball_arr = []
+    count=0
+    (1..highest).each do |n|
+      ball_arr.push(n)
+    end
+    combo_arr = ball_arr.combination(balls).to_a
+    selection = rand(0..combo_arr.length-1)
+    match_selection = rand(0..combo_arr.length-1)
+    until (match_selection == selection)
+      match_selection = rand(0..combo_arr.length-1)
+      count +=1
+    end
+    count/365
   end
 
   def generate_odds_from_ball_combo(balls, highest)
