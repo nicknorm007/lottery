@@ -54,7 +54,7 @@ module LotteryHelper
       match_selection = rand(0..combo_arr.length-1)
       count +=1
     end
-    count/365
+    count
   end
 
   def generate_odds_from_ball_combo(balls, highest)

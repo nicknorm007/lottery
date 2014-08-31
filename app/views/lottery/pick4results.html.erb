@@ -28,7 +28,7 @@
                 <% @picked = generate_pick_combo(params[:pick].to_i) %>
                 <% if @picked == params[:lucky_num] %>
                     <% @win = 'Winning number on: ' + ((@dayplay).strftime("%m/%d/%Y")).to_s + ' after ' + (@dayplay - (Date.today)).to_i.to_s + ' days.' %>
-                    <div id="popup"><%= @win %></div>
+                    <td id="popup"><%= @win %></td>
                     <td id="winner" class="table-data-winner"><%= @picked %></td>
                     <% break %>
                 <% else %>

@@ -42,16 +42,16 @@ ready = ->
       e.stopPropagation()
       alert "Length of number you play must match game type!"
 
+  $("#simulate").bind "ajax:complete", (event, data) ->
+    $("#simresults").html(data.responseText)
+    return
+
   $("#winner").hover (->
     $("#popup").show()
     return
   ), ->
     $("#popup").hide()
     return
-
-  $("#simulate").bind "ajax:complete", (event, data) ->
-    alert "hi"
-    $("#simresults").html(data.responseText)
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -12,8 +12,12 @@
   </tr>
   </table>
   <br/>
+  Click below to simulate a game played daily with <%= params[:combo] %> balls and a highest ball numbered <%= params[:highest_num] %> :
+  <br/>
+  <br/>
   <%= link_to "Simulate how long it takes to win!", lottery_simulate_path(balls: params[:combo], highest: params[:highest_num] ), :remote => true , :id => "simulate" , :class => "btn btn-primary" , method: :post %>
-  <br>
-  <br>
+  <br/>
+  <br/>
   <div id="simresults"></div>
+  <br/>
 </div>
