@@ -42,6 +42,9 @@ ready = ->
       e.stopPropagation()
       alert "Length of number you play must match game type!"
 
+  $("#simulate").click ->
+    $("#calcmsg").html("Calculating.....please wait.")
+
   $("#simulate").bind "ajax:complete", (event, data) ->
     $("#simresults").html(data.responseText)
     return

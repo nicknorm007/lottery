@@ -21,10 +21,9 @@ class LotteryController < ApplicationController
   def simulate
     balls = params[:balls].to_i
     highest = params[:highest].to_i
-    tries=try_to_match(balls, highest)
-    winmsg = "It took #{tries} days to win. That's about #{number_with_precision(tries/365, :precision => 1)} years."
+    @tries=try_to_match(balls, highest)
     respond_to do |format|
-      format.text { render :text => winmsg}
+      format.html { render :partial => 'results'}
     end
   end
 
