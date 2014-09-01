@@ -1,6 +1,6 @@
 <%= form_tag('/lottery/pick4results', :id => 'pick4form') do %>
     <div class="lotterylabels">
-      Select the number of balls drawn, then select the end date to stop playing:
+      Select the number of digits you want to play, then select the end date to stop playing:
     </div>
     <%= radio_button_tag(:pick, '4', :checked => true) %>
     <%= label_tag(:pick_4, '4 Ball Draw') %>
@@ -31,3 +31,6 @@
     </br>
     <%= submit_tag 'Generate your daily number(s)!', class: 'btn btn-primary', :id => 'generateBtn' %>
 <% end -%>
+<div id="lotballs">
+  <%= image_tag("lotteryballs.png") %>
+</div>
