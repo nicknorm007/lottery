@@ -27,4 +27,20 @@ class LotteryController < ApplicationController
     end
   end
 
+  def lifedeath
+  end
+
+  def lifesimulate
+    odds = params[:odds]
+    selection = rand(0..odds-1)
+    attempt = rand(0..odds-1)
+    @msg = "This event did NOT occur in your lifetime."
+    if(selection == attempt)
+      @msg = "This event occurred at some point in your life."
+    end
+    respond_to do |format|
+      format.html { render :partial => 'simresults'}
+    end
+  end
+
 end
