@@ -49,6 +49,20 @@ ready = ->
     $("#simresults").html(data.responseText)
     return
 
+  $("#simlightning").bind "ajax:complete", (event, data) ->
+    $("#lightresult").html(data.responseText)
+    return
+
+  $("#simlightning").click ->
+    $("#lightresult").html("Calculating.....please wait.")
+
+  $("#simcar").bind "ajax:complete", (event, data) ->
+    $("#simresult").html(data.responseText)
+    return
+
+  $("#simcar").click ->
+    $("#simresult").html("Calculating.....please wait.")
+
   $("#winner").hover (->
     $("#popup").show()
     return

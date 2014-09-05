@@ -1,12 +1,21 @@
 <div class="lotterylabels">
-Odds of dying being struck by lightning in your life: 1 in 3000
   <table class="table table-condensed table-bordered">
+    Odds of being struck by lighting in your lifetime: 1 in 3000
     <tr>
-      <td class="lifetable">
-      <%= link_to "Simulate this event", lottery_lifesimulate_path(odds: 3000), :remote => true , :id => "simlightning" , :class => "btn btn-primary" , method: :post %>
-      </td>
-      <td class="lifetable" id="lightresult"></td>
+    <td class="lifetable">
+      <%= link_to @simmsg, lottery_lifesimulate_path(odds: 3000), :remote => true , :id => "simlightning" , :class => "btn btn-primary" , method: :post %>
+     </td>
+     <td class="lifetable" id="lightresult"></td>
     </tr>
+  </table>
+  <table class="table table-condensed table-bordered">
+    Odds of dying in a car accident: 1 in 415
+  <tr>
+    <td class="lifetable">
+      <%= link_to @simmsg, lottery_lifesimulate_path(odds: 415), :remote => true , :id => "simcar" , :class => "btn btn-primary" , method: :post %>
+    </td>
+    <td class="lifetable" id="simresult"></td>
+  </tr>
   </table>
 
 </div>
