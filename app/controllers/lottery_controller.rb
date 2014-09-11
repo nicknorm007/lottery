@@ -18,6 +18,14 @@ class LotteryController < ApplicationController
   def comboresults
   end
 
+  def coinflip
+
+  end
+
+  def coinsimulate
+
+  end
+
   def simulate
     balls = params[:balls].to_i
     highest = params[:highest].to_i

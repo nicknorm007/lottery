@@ -10,11 +10,14 @@ Lottery::Application.routes.draw do
   get 'lottery', to: 'lottery#index', as: 'lottery'
   get "lottery/pick4"
   get "lottery/combo"
+  get "lottery/lifedeath"
+  get "lottery/coinflip"
   post  "lottery/lifesimulate"
   post "lottery/comboresults"
   post "lottery/pick4results"
   post "lottery/simulate"
-  get "lottery/lifedeath"
+  post "lottery/coinsimulate"
+
 
 
 

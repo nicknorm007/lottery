@@ -66,4 +66,17 @@ module LotteryHelper
     odds
   end
 
+  def do_coin_sim(numflips)
+
+    numflips.times do
+      coinflip = rand(1..2)
+
+
+
+    end
+
+
+
+  end
+
 end
