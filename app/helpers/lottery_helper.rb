@@ -66,17 +66,34 @@ module LotteryHelper
     odds
   end
 
-  def do_coin_sim(numflips)
-
+  def do_coin_sim numflips
+    total_heads,total_tails,previous,streak_count,high_row=0,0,0,1,0
     numflips.times do
       coinflip = rand(1..2)
-
-
-
+      if coinflip==Coin::HEADS
+        total_heads += 1
+        if previous==Coin::HEADS
+          streak_count += 1
+          if high_row < streak_count
+            high_row = streak_count
+          end
+        else
+          streak_count=1
+        end
+        previous=Coin::HEADS
+      else
+        total_tails += 1
+        if previous==Coin::TAILS
+          streak_count += 1
+          if high_row < streak_count
+            high_row = streak_count
+          end
+        else
+          streak_count=1
+        end
+        previous=Coin::TAILS
+      end
     end
-
-
-
   end
 
 end
