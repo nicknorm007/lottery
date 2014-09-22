@@ -1,3 +1,14 @@
 <div class="lotteryresults">
-  <%= @streak %>
+  <table class="table table-condensed table-bordered">
+    <tr>
+    <th>Total Heads</th>
+    <th>Total Tails</th>
+    <th>Longest Streak</th>
+    </tr>
+    <tr>
+    <td><%= @streak[:heads] %></td>
+    <td><%= @streak[:tails] %></td>
+    <td><%= @streak[:high_row] %></td>
+    </tr>
+  </table>
 </div>

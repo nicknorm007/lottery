@@ -50,7 +50,7 @@ ready = ->
     return
 
   $("#simcoinflip").click ->
-    $(this).attr "href", $(this).attr("href") + "?flips=" + $("#coin_flips").val()
+    $(this).attr "href", "/lottery/coinsimulate" + "?flips=" + $("#coin_flips").val()
     return
 
   $("#simcoinflip").bind "ajax:complete", (event, data) ->
