@@ -66,9 +66,9 @@ module LotteryHelper
     odds
   end
 
-  def do_coin_sim numflips
+  def do_coin_sim(numflips)
     total_heads,total_tails,previous,streak_count,high_row=0,0,0,1,0
-    numflips.times do
+    numflips.to_i.times do
       coinflip = rand(1..2)
       if coinflip==Coin::HEADS
         total_heads += 1
@@ -94,6 +94,7 @@ module LotteryHelper
         previous=Coin::TAILS
       end
     end
+    high_row
   end
 
 end

@@ -19,11 +19,15 @@ class LotteryController < ApplicationController
   end
 
   def coinflip
+    @simcoinmsg="Start flipping!"
 
   end
 
   def coinsimulate
-
+    @streak=do_coin_sim(params[:flips])
+    respond_to do |format|
+      format.html { render :partial => 'coinflips'}
+    end
   end
 
   def simulate

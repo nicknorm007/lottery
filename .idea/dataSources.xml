@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2048719578">
+    <data-source source="LOCAL" name="Rails lottery: development" uuid="15d11fbe-3ac0-4250-a1c7-3251b641919d">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/lottery_development</jdbc-url>
+      <user-name>nnorman</user-name>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails lottery: test" uuid="0b2ef7cf-7adb-4a2b-b59a-dfca9644eec3">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/lottery_test</jdbc-url>
+      <user-name>nnorman</user-name>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails lottery: production" uuid="b666214f-9787-4bcc-b871-41b8bf1f73e6">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:lottery_production</jdbc-url>
+      <user-name>nnorman</user-name>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

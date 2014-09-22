@@ -49,6 +49,14 @@ ready = ->
     $("#simresult").html(data.responseText)
     return
 
+  $("#simcoinflip").click ->
+    $(this).attr "href", $(this).attr("href") + "?flips=" + $("#coin_flips").val()
+    return
+
+  $("#simcoinflip").bind "ajax:complete", (event, data) ->
+    $("#flipresults").html(data.responseText)
+    return
+
   $(".simclass").bind "ajax:complete", (event, data) ->
     id = $(this).attr("id")
     $("\##{id}result").html(data.responseText)

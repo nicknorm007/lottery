@@ -10,4 +10,6 @@ out all of your money.
   Enter the number of coin flips you want to simulate:
   <%= text_field_tag(:coin_flips, nil, maxlength: 6, size: 6, :id => 'coin_flips') %>
 </div>
+<%= link_to @simcoinmsg, lottery_coinsimulate_path, :remote => true , :id => "simcoinflip" , :class => "simclass btn btn-primary" , method: :post %>
 </p>
+<div id="flipresults"></div>
