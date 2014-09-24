@@ -20,5 +20,15 @@
   <%= @player.team %>
 </p>
 
+<p>
+  <strong>FFPG:</strong>
+  <%= @player.ffpg %>
+</p>
+
+<p>
+  <strong>active:</strong>
+  <%= @player.active %>
+</p>
+
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>

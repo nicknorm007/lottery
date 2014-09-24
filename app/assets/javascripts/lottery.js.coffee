@@ -50,11 +50,13 @@ ready = ->
     return
 
   $("#simcoinflip").click ->
+    $("#flipmsg").html("Calculating.....please wait.")
     $(this).attr "href", "/lottery/coinsimulate" + "?flips=" + $("#coin_flips").val()
     return
 
   $("#simcoinflip").bind "ajax:complete", (event, data) ->
     $("#flipresults").html(data.responseText)
+    $("#flipmsg").html("")
     return
 
   $(".simclass").bind "ajax:complete", (event, data) ->

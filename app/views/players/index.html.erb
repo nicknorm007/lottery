@@ -7,6 +7,8 @@
       <th>Position</th>
       <th>Price</th>
       <th>Team</th>
+      <th>FFPG</th>
+      <th>Active</th>
       <th></th>
       <th></th>
       <th></th>
@@ -20,6 +22,8 @@
         <td><%= player.position %></td>
         <td><%= player.price %></td>
         <td><%= player.team %></td>
+        <td><%= player.ffpg %></td>
+        <td><%= player.active %></td>
         <td><%= link_to 'Show', player %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
         <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>

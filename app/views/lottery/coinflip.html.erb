@@ -1,15 +1,16 @@
 <div class="lotterylabels">
 It's time to have some fun flipping a coin!  Enter the number of times you want to flip the coin.  Information about
 your simulation will be displayed.  You may find the longest streak of either heads or tails to be interesting.  This
-is important when considering betting schemes like the Martingale system where one doubles their bet each time with the
+is important when considering betting schemes like the <a href="http://en.wikipedia.org/wiki/Martingale_(betting_system)">Martingale system</a> where one doubles their bet each time with the
 expectation that a win will eventually occur.  You may be surprised that streaks are all too common and can quickly wipe
 out all of your money.
 </div>
 <p>
 <div class="lotterylabels">
   Enter the number of coin flips you want to simulate:
-  <%= text_field_tag(:coin_flips, nil, maxlength: 6, size: 6, :id => 'coin_flips') %>
+  <%= text_field_tag(:coin_flips, nil, maxlength: 9, size: 9, :id => 'coin_flips') %>
 </div>
 <%= link_to @simcoinmsg, lottery_coinsimulate_path, :remote => true , :id => "simcoinflip" , :class => "simclass btn btn-primary" , method: :post %>
 </p>
+<div id="flipmsg"></div>
 <div id="flipresults"></div>
