@@ -18,3 +18,4 @@
 //= require turbolinks
 //= require bootstrap
 //= require lottery
+//= require players

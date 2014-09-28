@@ -1,5 +1,4 @@
 Lottery::Application.routes.draw do
-  resources :players
 
   resources :accounts
 
@@ -14,6 +13,8 @@ Lottery::Application.routes.draw do
   get "lottery/combo"
   get "lottery/lifedeath"
   get "lottery/coinflip"
+  get "players/fantasy"
+  post "players/fantasyresults"
   post  "lottery/lifesimulate"
   post "lottery/comboresults"
   post "lottery/pick4results"

@@ -1,0 +1,13 @@
+<div class="lotterylabels">
+  Use this simulation to simulate fantasy football lineups for the current week.  We'll use a popular fantasy site called
+  <a href="http://www.fanduel.com)">Fanduel</a> to generate lineups for the current week to save you time in coming up
+  with your own.  These lineups will optimize the salary cap and fppg to give you some decent options to work with.
+</div>
+<div class="lotterylabels">
+  Salary max limit is $60,000. Let's generate a Week 4 lineup with a projected FFPG > 90 points.
+<p>
+<%= link_to @lineup_msg, players_fantasyresults_path, :remote => true , :id => "simlineup" , :class => "btn btn-primary" , method: :post %>
+</p>
+<div id="simlineupmsg"></div>
+<div id="simlineupresult"></div>
+</div>

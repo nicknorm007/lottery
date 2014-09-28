@@ -57,8 +57,11 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (4.7.5)
     multi_json (1.9.2)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -134,6 +137,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   jquery-validation-rails
+  nokogiri (~> 1.6.3.1)
   pg
   rails (= 4.0.4)
   realrand (~> 2.0.1)
