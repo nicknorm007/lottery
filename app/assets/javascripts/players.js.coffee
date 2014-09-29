@@ -6,6 +6,7 @@
 ready = ->
 
   $("#simlineup").click ->
+    $("#simlineupresult").html("")
     $("#simlineupmsg").html("Calculating.....please wait.")
 
   $("#simlineup").bind "ajax:complete", (event, data) ->

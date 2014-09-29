@@ -1,1 +1,26 @@
-<p>Hello now.</p>
+<table class="table table-condensed table-bordered">
+  <tr>
+    <th>Player</th>
+    <th>Position</th>
+    <th>Salary</th>
+    <th>Next Game</th>
+    <th>FPPG</th>
+  </tr>
+  <% @results[:list].each do |p| %>
+  <tr>
+    <td><%= p.name %></td>
+    <td><%= p.pos %></td>
+    <td><%= p.salary %></td>
+    <td><%= p.fixture %></td>
+    <td><%= p.fppg %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <% 2.times do %>
+    <td></td>
+    <% end %>
+    <td>Total: <%= @results[:salary] %></td>
+    <td></td>
+    <td>Total: <%= @results[:fppg] %></td>
+  </tr>
+</table>
