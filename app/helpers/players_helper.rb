@@ -57,7 +57,8 @@ module PlayersHelper
       @total_fppg = 0
       @playlist = []
       pick_players(QB: 1, RB: 2, WR: 3, TE: 1, K: 1, D: 1)
-      break if ((@total_salary == @salary_limit) && ( (@total_fppg > @pppg_target) && (@total_fppg <= @pppg_target + 10) ))
+      break if ((@total_salary == @salary_limit) && ( (@total_fppg > @pppg_target) &&
+          (@total_fppg <= @pppg_target + 10) ) && (@playlist.uniq.length == @playlist.length))
     end
 
     results = {}

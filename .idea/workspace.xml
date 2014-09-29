@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e31d19a5-2fd0-4a0c-ad77-6ac869ab687b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/players/_lineup.html.erb" afterPath="$PROJECT_DIR$/app/views/players/_lineup.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/players/fantasy.html.erb" afterPath="$PROJECT_DIR$/app/views/players/fantasy.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/players.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/players.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/players_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/players_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lottery.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,21 +41,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_lineup.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="_lineup.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/players/_lineup.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6647399" vertical-offset="0" max-vertical-offset="519">
+            <state vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="465">
               <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fantasy.html.erb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="fantasy.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/players/fantasy.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="300">
-              <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.14450867" vertical-offset="0" max-vertical-offset="519">
+              <caret line="5" column="107" selection-start-line="5" selection-start-column="107" selection-end-line="5" selection-end-column="107" />
               <folding />
             </state>
           </provider>
@@ -75,8 +74,8 @@
       <file leaf-file-name="players_helper.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/helpers/players_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="567" max-vertical-offset="1110">
-              <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="477" max-vertical-offset="1125">
+              <caret line="54" column="11" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -114,10 +113,10 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/controllers/players_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/app/views/players/fantasy.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/players.js.coffee" />
-        <option value="$PROJECT_DIR$/app/helpers/players_helper.rb" />
         <option value="$PROJECT_DIR$/app/views/players/_lineup.html.erb" />
+        <option value="$PROJECT_DIR$/app/helpers/players_helper.rb" />
+        <option value="$PROJECT_DIR$/app/views/players/fantasy.html.erb" />
       </list>
     </option>
   </component>
@@ -942,26 +941,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/players/fantasy.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/players/_lineup.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="300">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+        <state vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="465">
+          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/players_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
-          <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="477" max-vertical-offset="1125">
+          <caret line="54" column="11" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/players/_lineup.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/players/fantasy.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6647399" vertical-offset="0" max-vertical-offset="519">
-          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.14450867" vertical-offset="0" max-vertical-offset="519">
+          <caret line="5" column="107" selection-start-line="5" selection-start-column="107" selection-end-line="5" selection-end-column="107" />
           <folding />
         </state>
       </provider>
