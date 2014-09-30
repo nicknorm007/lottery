@@ -14,3 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+.idea/dictionaries/nnorman.xml
+.idea/runConfigurations/Development__lottery.xml
+.idea/runConfigurations/Production__lottery.xml
+.idea/runConfigurations/spec__lottery.xml
+.idea/runConfigurations/test__lottery.xml
+.idea/scopes/scope_settings.xml
+.idea/workspace.xml
