@@ -15,13 +15,11 @@ Lottery::Application.routes.draw do
   get "lottery/coinflip"
   get "players/fantasy"
   post "players/fantasyresults"
-  post  "lottery/lifesimulate"
+  post "lottery/lifesimulate"
   post "lottery/comboresults"
   post "lottery/pick4results"
   post "lottery/simulate"
   post "lottery/coinsimulate"
-
-
 
 
   # Example of regular route:

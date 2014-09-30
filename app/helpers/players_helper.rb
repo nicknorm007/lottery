@@ -58,7 +58,7 @@ module PlayersHelper
       @playlist = []
       pick_players(QB: 1, RB: 2, WR: 3, TE: 1, K: 1, D: 1)
       break if ((@total_salary == @salary_limit) && ( (@total_fppg > @pppg_target) &&
-          (@total_fppg <= @pppg_target + 10) ) && (@playlist.uniq.length == @playlist.length))
+          (@total_fppg <= @pppg_target + 20) ) && (@playlist.uniq.length == @playlist.length))
     end
 
     results = {}
@@ -67,3 +67,7 @@ module PlayersHelper
   end
 
 end
+
+#for url access use below
+#fanduel_url = 'https://www.fanduel.com/e/Game/NFL_Salary_Cap_10606/view?edit_seat_id=47017082'
+#page = Nokogiri::HTML(open(fanduel_url))
