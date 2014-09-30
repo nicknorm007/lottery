@@ -34,9 +34,12 @@ module PlayersHelper
   end
 
   def simulate_lineup
-    f = File.open("files/fanduel.html")
-    page = Nokogiri::HTML(f)
-    f.close
+    #f = File.open("files/fanduel.html")
+    #for url access use below
+    fanduel_url = 'https://www.fanduel.com/e/Game/10648?tableId=5906836&fromLobby=true'
+    page = Nokogiri::HTML(open(fanduel_url))
+    #page = Nokogiri::HTML(f)
+    #f.close
     @players = []
     @playlist = []
     @total_salary = 0
@@ -69,5 +72,5 @@ module PlayersHelper
 end
 
 #for url access use below
-#fanduel_url = 'https://www.fanduel.com/e/Game/NFL_Salary_Cap_10606/view?edit_seat_id=47017082'
+#fanduel_url = 'https://www.fanduel.com/e/Game/10648?tableId=5906836&fromLobby=true'
 #page = Nokogiri::HTML(open(fanduel_url))
