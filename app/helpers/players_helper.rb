@@ -3,7 +3,7 @@ module PlayersHelper
   require 'open-uri'
   require 'json'
 
-  class Player
+  class SportsPlayer
     attr_accessor :name, :pos, :salary, :status, :fixture, :fppg
 
     def initialize(opts = {})
@@ -51,7 +51,7 @@ module PlayersHelper
       pos, name, fppg, played, fixture, salary = tr.xpath('./td')
       salary = salary.text.gsub(/\D/,'').to_i
       fppg = fppg.text.to_i
-      p = Player.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary)
+      p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary)
       @players.push(p)
     end
 
