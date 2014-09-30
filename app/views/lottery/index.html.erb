@@ -1,9 +1,43 @@
-<h1>This is some text.</h1>
-<h1>This is some text.</h1>
-<h1>This is some text.</h1>
-<h1>This is some text.</h1>
-<h1>This is some text.</h1>
-<h1>This is some text.</h1>
-<h1>This is some text.</h1>
-<h1>This is some text.</h1>
-<h1>This is some text.</h1>
+<div class="lotteryresults">
+<% flash.each do |name, msg| %>
+    <%= content_tag :p, msg if msg.is_a?(String) %>
+<% end %>
+</div>
+<div class="lotterylabels">
+<h1 class="lotteryheadings">Welcome to the lottery and chance simulator!</h1>
+<br>
+The goal behind this site is to simulate chance events for the lottery
+and other types of events.  Try playing some of the games to get an idea how long it takes for your number to come up.
+<p>
+<h1 class="lotteryheadings">Pick 4 Daily Game</h1>
+Here you can simulate a typical state lottery game where you can play 2,3 or 4 numbers.  You can play until a specific
+date and see if you win.  Or, you can let the game just play until your winning number finally gets drawn.  Hover over
+the winning number to see how long it took and what day it finally hit.  You may be surprised to see how long it takes
+to hit the winning number.
+</p>
+<p>
+<h1 class="lotteryheadings">Combo Ball Lottery</h1>
+Use this simulation to see the odds of winning a game with a certain number of balls that are drawn, similar to a 'Megabucks'
+type lottery.  You can also simulate how long it takes to win this type of game.  Games that are in the millions to one odds
+will take some time to hit.  You may be surprised to see it can take thousands of years!
+</p>
+<p>
+<h1 class="lotteryheadings">Life and Death</h1>
+Use this simulation to see the odds of your life ending in a certain way.  You can simulate the odds of various events
+and see how lucky or unlucky you are.
+</p>
+<p>
+<h1 class="lotteryheadings">Coin Flipping Fun</h1>
+It's time to have some fun flipping a coin!  Enter the number of times you want to flip the coin.  Information about
+your simulation will be displayed.  You may find the longest streak of either heads or tails to be interesting.  This
+is important when considering betting schemes like the Martingale system where one doubles their bet each time with the
+expectation that a win will eventually occur.  You may be surprised that streaks are all too common and can quickly wipe
+out all of your money.
+</p>
+<p>
+<h1 class="lotteryheadings">Fantasy Football Fun</h1>
+Use this simulation to simulate fantasy football lineups for the current week.  We'll use a popular fantasy site called
+  <a href="http://www.fanduel.com)">Fanduel</a> to generate lineups for the current week to save you time in coming up
+  with your own.  These lineups will optimize the salary cap and fppg to give you some decent options to work with.
+</p>
+</div>

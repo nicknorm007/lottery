@@ -8,6 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require jquery.ui.all
  *= require_self
  *= require_tree .
  */
@@ -31,6 +32,13 @@
 #bag {
   float: left;
   padding-top: 2em;
+}
+#lotballs {
+  float: center;
+  padding-top: 2em;
+}
+#bag:hover {
+  cursor: pointer;
 }
 #cssmenu {
   float: left;
@@ -67,4 +75,93 @@
   background-repeat: no-repeat;
   padding: 8px 0 0 10px;
 }
+.lotterylabels
+{
+text-shadow:1px 1px 0 rgba(214,214,214,1);
+font-weight:normal;
+color:#030408;
+letter-spacing:1pt;
+word-spacing:2pt;
+font-size:16px;
+text-align:left;
+font-family:lucida sans unicode, lucida grande, sans-serif;
+line-height:2;
+}
+.lotterycalc
+{
+  text-shadow:1px 1px 0 rgba(214,214,214,1);
+  font-weight:normal;
+  color: #ff1f33;
+  letter-spacing:1pt;
+  word-spacing:2pt;
+  font-size:16px;
+  text-align:left;
+  font-family:lucida sans unicode, lucida grande, sans-serif;
+  line-height:2;
+}
+.lotteryheadings
+{
+  text-shadow:1px 1px 0 rgba(214,214,214,1);
+  font-weight:bold;
+  color: #ff1f33;
+  letter-spacing:1pt;
+  word-spacing:2pt;
+  font-size:24px;
+  text-align:left;
+  font-family:lucida sans unicode, lucida grande, sans-serif;
+  line-height:2;
+}
+.lotteryresults
+{
+  text-shadow:1px 1px 0 rgba(214,214,214,1);
+  font-weight:bold;
+  color: #378bff;
+  letter-spacing:1pt;
+  word-spacing:2pt;
+  font-size:20px;
+  text-align:left;
+  font-family:lucida sans unicode, lucida grande, sans-serif;
+  line-height:2;
+}
+.table-data-picked
+{
+  background: #f4ff8b;
+
+}
+.table-data-rownum
+{
+  background: rgba(81, 255, 134, 0.66);
+
+}
+.table-data-winner
+{
+  background: rgba(255, 31, 51, 0.66);
+  font-size:11px;
+  word-wrap:break-word
+
+}
+.error
+{
+  color: darkred;
+  font-size:12px;
+
+}
+#popup {
+  height: 50px;
+  width: 250px;
+  text-align: center;
+  vertical-align:middle;
+  background-color: cornflowerblue;
+  color: white;
+  display: none;
+  padding-top: 8px;
+  position: absolute;
+}
+td.lifetable {
+  height: 30px;
+  width : 200px;
+  vertical-align: bottom;
+}
+
+
 
