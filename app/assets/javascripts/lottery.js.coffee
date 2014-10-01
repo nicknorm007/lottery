@@ -4,6 +4,7 @@
 
 
 ready = ->
+
   $('#bag').click (e) ->
     window.location.href = "/lottery"
 

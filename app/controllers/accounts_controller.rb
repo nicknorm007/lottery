@@ -28,8 +28,8 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        flash[:notice] = "Feedback successfully submitted!"
-        format.html {redirect_to url_for(:controller => :lottery, :action => :index, :flash => { :success => "Feedback successfully submitted!" })}
+        flash[:notice] = "Thank you for your feedback!"
+        format.html {redirect_to @account, :flash => { :success => "Thank you for your feedback!" }}
         format.json { render action: 'show', status: :created, location: @account }
       else
         format.html { render action: 'new' }
