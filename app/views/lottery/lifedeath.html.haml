@@ -1,0 +1,31 @@
+.lotterylabels
+  %table.table.table-condensed.table-bordered
+    Odds of being struck by lighting in your lifetime: 1 in 3000
+    %tr
+      %td.lifetable
+        = link_to @simmsg, lottery_lifesimulate_path(odds: 3000), :remote => true , :id => "simlightning" , :class => "simclass btn btn-primary" , method: :post
+      %td#simlightningresult.lifetable
+  %table.table.table-condensed.table-bordered
+    Odds of dying in a car accident: 1 in 415
+    %tr
+      %td.lifetable
+        = link_to @simmsg, lottery_lifesimulate_path(odds: 415), :remote => true , :id => "simcar" , :class => "simclass btn btn-primary" , method: :post
+      %td#simcarresult.lifetable
+  %table.table.table-condensed.table-bordered
+    Odds of dying from heart disease: 1 in 7
+    %tr
+      %td.lifetable
+        = link_to @simmsg, lottery_lifesimulate_path(odds: 7), :remote => true , :id => "simheart" , :class => "simclass btn btn-primary" , method: :post
+      %td#simheartresult.lifetable
+  %table.table.table-condensed.table-bordered
+    Odds of dying from cancer: 1 in 7
+    %tr
+      %td.lifetable
+        = link_to @simmsg, lottery_lifesimulate_path(odds: 7), :remote => true , :id => "simcancer" , :class => "simclass btn btn-primary" , method: :post
+      %td#simcancerresult.lifetable
+  %table.table.table-condensed.table-bordered
+    Odds of dying from anything! : 1 in 1
+    %tr
+      %td.lifetable
+        = link_to @simmsg, lottery_lifesimulate_path(odds: 1), :remote => true , :id => "simlife" , :class => "simclass btn btn-primary" , method: :post
+      %td#simliferesult.lifetable

@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %title Odds and Endzones
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body{:class => controller.controller_name}
+    #banner
+      = @page_title || "Odds and Endzones"
+    #cssmenu
+      %ul
+        %li.active
+          %a{:href => "/lottery/pick4"}
+            %span Pick 4 Daily Game
+        %li
+          %a{:href => "/lottery/combo"}
+            %span Combo Ball Lottery
+        %li.last
+          %a{:href => "/lottery/lifedeath"}
+            %span Life and Death
+        %li.last
+          %a{:href => "/lottery/coinflip"}
+            %span Coin Flipping Fun
+        %li.last
+          %a{:href => "/players/fantasy"}
+            %span Fantasy Football
+        %li.last
+          %a{:href => "/accounts/new"}
+            %span Feedback
+        %li.last
+          %a{:href => "/lottery"}
+            %span Back Home
+      #bag
+        = image_tag("bag.png")
+    #main
+      = yield

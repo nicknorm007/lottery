@@ -1,0 +1,12 @@
+%table.table.table-condensed.table-bordered
+  %tr
+    %th Total Heads
+    %th Total Tails
+    %th Longest Streak
+  %tr
+    %td= @streak[:heads]
+    %td= @streak[:tails]
+    %td
+      = @streak[:high_row]
+      = @streak[:streaker]
+      in a row.

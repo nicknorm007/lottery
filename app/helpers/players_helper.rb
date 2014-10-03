@@ -4,7 +4,7 @@ module PlayersHelper
   require 'json'
 
   class SportsPlayer
-    attr_accessor :name, :pos, :salary, :status, :fixture, :fppg
+    attr_accessor :name, :pos, :salary, :status, :fixture, :fppg, :next_opp
 
     def initialize(opts = {})
       @name = opts[:name]
@@ -13,6 +13,7 @@ module PlayersHelper
       @status = opts[:status]
       @fppg = opts[:fppg]
       @fixture = opts[:fixture]
+      @next_opp = opts[:next_opp]
     end
 
   end
@@ -32,14 +33,15 @@ module PlayersHelper
       @total_fppg += @players[pick].fppg
     end
   end
-
+  def open_from_file
+    f = File.open("files/fanduel.html")
+    page = Nokogiri::HTML(f)
+    f.close
+    page
+  end
   def simulate_lineup
-    #f = File.open("files/fanduel.html")
-    #for url access use below
     fanduel_url = 'https://www.fanduel.com/e/Game/10648?tableId=5906836&fromLobby=true'
     page = Nokogiri::HTML(open(fanduel_url))
-    #page = Nokogiri::HTML(f)
-    #f.close
     @players = []
     @playlist = []
     @total_salary = 0
@@ -51,7 +53,9 @@ module PlayersHelper
       pos, name, fppg, played, fixture, salary = tr.xpath('./td')
       salary = salary.text.gsub(/\D/,'').to_i
       fppg = fppg.text.to_i
-      p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary)
+      opposing_team = fixture.to_html.split("b>")[1].gsub('</','')
+      p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary,
+                           next_opp: opposing_team)
       @players.push(p)
     end
 

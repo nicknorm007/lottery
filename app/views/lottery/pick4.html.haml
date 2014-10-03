@@ -1,0 +1,29 @@
+= form_tag('/lottery/pick4results', :id => 'pick4form') do
+  .lotterylabels
+    Select the number of digits you want to play, then select the end date to stop playing:
+  = radio_button_tag(:pick, '4', :checked => true)
+  = label_tag(:pick_4, '4 Ball Draw')
+  = radio_button_tag(:pick, '3')
+  = label_tag(:pick_3, '3 Ball Draw')
+  = radio_button_tag(:pick, '2')
+  = label_tag(:pick_2, '2 Ball Draw')
+  = radio_button_tag(:pick, '1')
+  = label_tag(:pick_1, '1 Ball Draw')
+  .lotterylabels
+    Enter the number you would like to play:
+    = text_field_tag(:lucky_num, nil, maxlength: 4, size: 4, :id => 'lucky_num')
+    %br/
+    Click the calendar to select the end date or select to play until you win:
+    %br/
+    = check_box_tag(:play_until_win)
+    = label_tag(:play_until_win, "Don't select an end date. Just play until I win!")
+  %br/
+  %br/
+  .lotterycalendar
+    = text_field_tag(:pickdate, nil, :class => 'datepicker',:readonly => true, :id => 'pickdate')
+    = hidden_field_tag(:recorded)
+    %br/
+    %br/
+  = submit_tag 'Generate your daily number(s)!', class: 'btn btn-primary', :id => 'generateBtn'
+#lotballs
+  = image_tag("lotteryballs.png")

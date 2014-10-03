@@ -1,0 +1,22 @@
+%table.table.table-condensed.table-bordered
+  %tr
+    %th Player
+    %th Position
+    %th Salary
+    %th Next Game
+    %th FPPG
+  - @results[:list].each do |p|
+    %tr
+      %td= p.name
+      %td= p.pos
+      %td= p.salary
+      %td= p.fixture
+      %td= p.fppg
+  %tr
+    - 2.times do
+      %td
+    %td
+      Total: #{@results[:salary]}
+    %td
+    %td
+      Total: #{@results[:fppg]}

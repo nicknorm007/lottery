@@ -1,0 +1,8 @@
+.lotterylabels
+  If you want to comment, please provide some feedback below.
+= simple_form_for @account do |f|
+  = f.input :firstname, label: 'Firstname'
+  = f.input :lastname, label: 'Lastname'
+  = f.input :email, placeholder: 'user@domain.com'
+  = f.input :comments, label: 'Comments', :as => :text, :input_html => { :cols => 50, :rows => 5 }
+  = f.button :submit, 'Provide Feedback'
