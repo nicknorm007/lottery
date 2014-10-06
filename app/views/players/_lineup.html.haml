@@ -5,6 +5,7 @@
     %th Salary
     %th Next Game
     %th FPPG
+    %th Next Opp
   - @results[:list].each do |p|
     %tr
       %td= p.name
@@ -12,6 +13,7 @@
       %td= p.salary
       %td= p.fixture
       %td= p.fppg
+      %td= p.next_opp
   %tr
     - 2.times do
       %td
