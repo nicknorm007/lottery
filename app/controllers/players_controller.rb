@@ -6,7 +6,7 @@ class PlayersController < ApplicationController
   end
 
   def fantasyresults
-    @results = simulate_lineup
+    @results = simulate_lineup params[:myurl]
     respond_to do |format|
       format.html { render :partial => 'lineup'}
     end

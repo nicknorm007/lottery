@@ -91,10 +91,14 @@ module PlayersHelper
     page
   end
 
-  def simulate_lineup
-    #fanduel_url = 'https://www.fanduel.com/e/Game/10648?tableId=5906836&fromLobby=true'
-    #page = Nokogiri::HTML(open(fanduel_url))
-    page = open_from_file
+  def simulate_lineup(my_url)
+    page = nil
+    if my_url == ""
+      page = open_from_file
+    else
+      fanduel_url = my_url
+      page = Nokogiri::HTML(open(fanduel_url))
+    end
     @players = []
     @playlist = []
     @total_salary = 0
@@ -116,8 +120,6 @@ module PlayersHelper
       end
       team_opp = SportsPlayer.abbreviations[opp.to_sym]
       index = tds.index(team_opp)
-      p index
-      p team_opp
       pl, pr, pp = 2, 6, 9
       ypl, ypr, ypp = (index + pl), (index + pr), (index + pp)
       la_ypl, la_ypr, la_ypp = dla[pl], dla[pr], dla[pp]

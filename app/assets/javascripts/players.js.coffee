@@ -7,6 +7,9 @@ ready = ->
 
   $("#simlineup").click ->
     $("#simlineupresult").html("")
+    gameURL = $("#my_url").val()
+    encoded = encodeURIComponent(gameURL);
+    $(this).attr "href", "/players/fantasyresults" + "?myurl=" + encoded
     $("#simlineupmsg").html("Calculating.....please wait.")
 
   $("#simlineup").bind "ajax:complete", (event, data) ->
