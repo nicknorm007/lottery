@@ -1,4 +1,4 @@
-%table.table.table-condensed.table-bordered
+%table.table.table-condensed.table-bordered.table-striped
   %tr
     %th Player
     %th Position
@@ -6,6 +6,12 @@
     %th Next Game
     %th FPPG
     %th Next Opp
+    %th Next YPL
+    %th League YPL
+    %th Next YPR
+    %th League YPR
+    %th Next YPP
+    %th League YPP
   - @results[:list].each do |p|
     %tr
       %td= p.name
@@ -14,6 +20,12 @@
       %td= p.fixture
       %td= p.fppg
       %td= p.next_opp
+      %td= p.opp_ypl
+      %td= p.la_ypl
+      %td= p.opp_ypr
+      %td= p.la_ypr
+      %td= p.opp_ypp
+      %td= p.la_ypp
   %tr
     - 2.times do
       %td

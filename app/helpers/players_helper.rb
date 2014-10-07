@@ -3,8 +3,12 @@ module PlayersHelper
   require 'open-uri'
   require 'json'
 
+  #opp_ypl: opp_ypl, la_ypl: la_ypl, opp_ypr: opp_ypr, la_ypr: la_ypr,
+   #   opp_ypp: opp_ypp, la_ypp: la_ypp
+
   class SportsPlayer
-    attr_accessor :name, :pos, :salary, :status, :fixture, :fppg, :next_opp
+    attr_accessor :name, :pos, :salary, :status, :fixture, :fppg, :next_opp, :opp_ypl, :la_ypl,
+                  :opp_ypr, :la_ypr, :opp_ypp, :la_ypp
 
     def initialize(opts = {})
       @name = opts[:name]
@@ -14,11 +18,17 @@ module PlayersHelper
       @fppg = opts[:fppg]
       @fixture = opts[:fixture]
       @next_opp = opts[:next_opp]
+      @opp_ypl = opts[:opp_ypl]
+      @la_ypl = opts[:la_ypl]
+      @opp_ypr = opts[:opp_ypr]
+      @la_ypr = opts[:la_ypr]
+      @opp_ypp = opts[:opp_ypp]
+      @la_ypp = opts[:la_ypp]
     end
 
     def self.abbreviations
-      abbrev = {NE: 'New England', BUF: 'Buffalo', MIA: 'Miami', NYJ: 'New York',
-                SD: 'San Diego', DEN: 'Denver', KC: 'Kanasas City', OAK: 'Oakland',
+      abbrev = {NE: 'New England', BUF: 'Buffalo', MIA: 'Miami', NYJ: 'NY Jets',
+                SD: 'San Diego', DEN: 'Denver', KC: 'Kansas City', OAK: 'Oakland',
                 CIN: 'Cincinnati', CLE: 'Cleveland', BAL: 'Baltimore', PIT: 'Pittsburgh',
                 IND: 'Indianapolis', HOU: 'Houston', TEN: 'Tennessee', JAC: 'Jacksonville',
                 PHI: 'Philadelphia', NYG: 'NY Giants', WAS: 'Washington', DAL: 'Dallas',
@@ -105,9 +115,16 @@ module PlayersHelper
         opp = opposing_team[1].split("<")[0]
       end
       team_opp = SportsPlayer.abbreviations[opp.to_sym]
+      index = tds.index(team_opp)
+      p index
+      p team_opp
+      pl, pr, pp = 2, 6, 9
+      ypl, ypr, ypp = (index + pl), (index + pr), (index + pp)
+      la_ypl, la_ypr, la_ypp = dla[pl], dla[pr], dla[pp]
+      opp_ypl, opp_ypr, opp_ypp = tds[ypl], tds[ypr], tds[ypp]
       p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary,
-                           next_opp: opp, opp_ypl: xxx, la_ypl: xxx, opp_ypr: xxx, la_ypr: xxx,
-                           opp_ypp: xxx, la_ypp: xxx)
+                          next_opp: opp, opp_ypl: opp_ypl, la_ypl: la_ypl, opp_ypr: opp_ypr, la_ypr: la_ypr,
+                          opp_ypp: opp_ypp, la_ypp: la_ypp)
       @players.push(p)
     end
 
