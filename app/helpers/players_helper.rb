@@ -72,7 +72,7 @@ module PlayersHelper
   def make_selection(position, picks)
     picks.times do
       pick = rand(0..@players.length-1)
-      until (@players[pick].pos == position.to_s && @players[pick].name[-1..-1] !~ /O|Q|A|R/ && @players[pick].salary > 4500 )
+      until (@players[pick].pos == position.to_s && @players[pick].name[-1..-1] !~ /O|Q|A|R|D/ && @players[pick].salary > 4500 )
         pick = rand(0..@players.length-1)
       end
       @playlist.push(@players[pick])
