@@ -3,9 +3,6 @@ module PlayersHelper
   require 'open-uri'
   require 'json'
 
-  #opp_ypl: opp_ypl, la_ypl: la_ypl, opp_ypr: opp_ypr, la_ypr: la_ypr,
-   #   opp_ypp: opp_ypp, la_ypp: la_ypp
-
   class SportsPlayer
     attr_accessor :name, :pos, :salary, :status, :fixture, :fppg, :next_opp, :opp_ypl, :la_ypl,
                   :opp_ypr, :la_ypr, :opp_ypp, :la_ypp
@@ -75,7 +72,7 @@ module PlayersHelper
   def make_selection(position, picks)
     picks.times do
       pick = rand(0..@players.length-1)
-      until (@players[pick].pos == position.to_s && @players[pick].name[-1..-1] !~ /O|Q|A|R/)
+      until (@players[pick].pos == position.to_s && @players[pick].name[-1..-1] !~ /O|Q|A|R/ && @players[pick].salary > 4500 )
         pick = rand(0..@players.length-1)
       end
       @playlist.push(@players[pick])
@@ -135,7 +132,7 @@ module PlayersHelper
       @total_fppg = 0
       @playlist = []
       pick_players(QB: 1, RB: 2, WR: 3, TE: 1, K: 1, D: 1)
-      break if ((@total_salary == @salary_limit) && ( (@total_fppg > @pppg_target) &&
+      break if ( ((@total_salary > (@salary_limit - 1000) && (@total_salary <= @salary_limit) )) && ( (@total_fppg > @pppg_target) &&
           (@total_fppg <= @pppg_target + 20) ) && (@playlist.uniq.length == @playlist.length))
     end
 

@@ -20,12 +20,24 @@
       %td= p.fixture
       %td= p.fppg
       %td= p.next_opp
-      %td= p.opp_ypl
-      %td= p.la_ypl
-      %td= p.opp_ypr
-      %td= p.la_ypr
-      %td= p.opp_ypp
-      %td= p.la_ypp
+      -if (p.la_ypl.to_f < p.opp_ypl.to_f) && p.pos != 'D'
+        %td.table-data-rownum= p.opp_ypl
+        %td= p.la_ypl
+      -else
+        %td= p.opp_ypl
+        %td= p.la_ypl
+      -if (p.la_ypr.to_f < p.opp_ypr.to_f) && p.pos != 'D'
+        %td.table-data-rownum= p.opp_ypr
+        %td= p.la_ypr
+      -else
+        %td= p.opp_ypr
+        %td= p.la_ypr
+      -if (p.la_ypp.to_f < p.opp_ypp.to_f) && p.pos != 'D'
+        %td.table-data-rownum= p.opp_ypp
+        %td= p.la_ypp
+      -else
+        %td= p.opp_ypp
+        %td= p.la_ypp
   %tr
     - 2.times do
       %td
