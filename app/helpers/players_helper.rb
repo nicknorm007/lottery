@@ -90,11 +90,17 @@ module PlayersHelper
 
   def simulate_lineup(my_url)
     page = nil
+    results = {}
     if my_url == ""
       page = open_from_file
     else
       fanduel_url = my_url
-      page = Nokogiri::HTML(open(fanduel_url))
+      begin
+        page = Nokogiri::HTML(open(fanduel_url))
+      rescue
+        results = {errors: "There was a problem reading the URL you entered."}
+        return results
+      end
     end
     @players = []
     @playlist = []
@@ -136,7 +142,6 @@ module PlayersHelper
           (@total_fppg <= @pppg_target + 20) ) && (@playlist.uniq.length == @playlist.length))
     end
 
-    results = {}
     results = {list: @playlist, fppg: @total_fppg, salary: @total_salary}
     results
   end

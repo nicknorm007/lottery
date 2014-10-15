@@ -1,48 +1,52 @@
-%table.table.table-condensed.table-bordered
-  %tr.table-data-header
-    %th Player
-    %th Position
-    %th Salary
-    %th Next Game
-    %th FPPG
-    %th Next Opp
-    %th Next YPL
-    %th League YPL
-    %th Next YPR
-    %th League YPR
-    %th Next YPP
-    %th League YPP
-  - @results[:list].each do |p|
+-if @results[:errors]
+  .lotterycalc
+    = @results[:errors]
+- else
+  %table.table.table-condensed.table-bordered
+    %tr.table-data-header
+      %th Player
+      %th Position
+      %th Salary
+      %th Next Game
+      %th FPPG
+      %th Next Opp
+      %th Next YPL
+      %th League YPL
+      %th Next YPR
+      %th League YPR
+      %th Next YPP
+      %th League YPP
+    - @results[:list].each do |p|
+      %tr
+        %td= p.name
+        %td= p.pos
+        %td= p.salary
+        %td= p.fixture
+        %td= p.fppg
+        %td= p.next_opp
+        -if (p.la_ypl.to_f < p.opp_ypl.to_f) && p.pos != 'D'
+          %td.table-data-rownum= p.opp_ypl
+          %td= p.la_ypl
+        -else
+          %td= p.opp_ypl
+          %td= p.la_ypl
+        -if (p.la_ypr.to_f < p.opp_ypr.to_f) && p.pos != 'D'
+          %td.table-data-rownum= p.opp_ypr
+          %td= p.la_ypr
+        -else
+          %td= p.opp_ypr
+          %td= p.la_ypr
+        -if (p.la_ypp.to_f < p.opp_ypp.to_f) && p.pos != 'D'
+          %td.table-data-rownum= p.opp_ypp
+          %td= p.la_ypp
+        -else
+          %td= p.opp_ypp
+          %td= p.la_ypp
     %tr
-      %td= p.name
-      %td= p.pos
-      %td= p.salary
-      %td= p.fixture
-      %td= p.fppg
-      %td= p.next_opp
-      -if (p.la_ypl.to_f < p.opp_ypl.to_f) && p.pos != 'D'
-        %td.table-data-rownum= p.opp_ypl
-        %td= p.la_ypl
-      -else
-        %td= p.opp_ypl
-        %td= p.la_ypl
-      -if (p.la_ypr.to_f < p.opp_ypr.to_f) && p.pos != 'D'
-        %td.table-data-rownum= p.opp_ypr
-        %td= p.la_ypr
-      -else
-        %td= p.opp_ypr
-        %td= p.la_ypr
-      -if (p.la_ypp.to_f < p.opp_ypp.to_f) && p.pos != 'D'
-        %td.table-data-rownum= p.opp_ypp
-        %td= p.la_ypp
-      -else
-        %td= p.opp_ypp
-        %td= p.la_ypp
-  %tr
-    - 2.times do
+      - 2.times do
+        %td
       %td
-    %td
-      Total: #{@results[:salary]}
-    %td
-    %td
-      Total: #{@results[:fppg]}
+        Total: #{@results[:salary]}
+      %td
+      %td
+        Total: #{@results[:fppg]}

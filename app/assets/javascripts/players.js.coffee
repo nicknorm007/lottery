@@ -10,7 +10,7 @@ ready = ->
     gameURL = $("#my_url").val()
     encoded = encodeURIComponent(gameURL);
     $(this).attr "href", "/players/fantasyresults" + "?myurl=" + encoded
-    $("#simlineupmsg").html("Calculating.....please wait.")
+    $("#simlineupmsg").html("Generating lineup.....please wait.")
 
   $("#simlineup").bind "ajax:complete", (event, data) ->
     $("#simlineupresult").html(data.responseText)
