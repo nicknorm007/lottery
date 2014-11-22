@@ -9,7 +9,7 @@
 %p
   .lotterylabels
     Enter the number of coin flips you want to simulate:
-    #{text_field_tag(:coin_flips, nil, maxlength: 9, size: 9, :id => 'coin_flips')}
+    = text_field_tag(:coin_flips, nil, maxlength: 9, size: 9, :id => 'coin_flips')
   = link_to @simcoinmsg, lottery_coinsimulate_path, :remote => true , :id => "simcoinflip" , :class => "simclass btn btn-primary" , method: :post
 #flipmsg
 #flipresults
