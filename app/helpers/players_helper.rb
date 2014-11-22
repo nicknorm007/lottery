@@ -41,7 +41,7 @@ module PlayersHelper
     league_averages = []
     oddshark_url = 'http://www.oddsshark.com/nfl/defensive-stats'
     page = Nokogiri::HTML(open(oddshark_url))
-    page.css("#chalk > tbody > tr:nth-child(15) > td").each do |node|
+    page.css("#chalk > tbody > tr:nth-child(18) > td").each do |node|
       text = node.text
       league_averages.push(text.to_f.round(2) == 0.0 ? text : text.to_f.round(2))
     end
