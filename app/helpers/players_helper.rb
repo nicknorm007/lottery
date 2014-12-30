@@ -35,6 +35,18 @@ module PlayersHelper
       abbrev
     end
 
+    def self.basketball
+      abbrev = {OKC: 'Oklahoma City', NO: 'New Orleans', PHO: 'Phoenix', CLE: 'Cleveland',
+                ATL: 'Atlanta', PHI: 'Philadelphia', GS: 'Golden State', TOR: 'Toronto',
+                POR: 'Portland', BOS: 'Boston', WAS: 'Washington', CHI: 'Chicago',
+                BKN: 'Brooklyn', SA: 'San Antonio', MEM: 'Memphis', DET: 'Detroit',
+                ORL: 'Orlando', LAL: 'LA Lakers', LAC: 'LA Clippers', MIN: 'Minnesota',
+                HOU: 'Houston', MIA: 'Miami', MIL: 'Milwaukee', IND: 'Indiana',
+                NY: 'New York', DET: 'Detroit', CHA: 'Charlotte', UTA: 'Utah',
+                DAL: 'Dallas', SAC: 'Sacramento'}
+      abbrev
+    end
+
   end
 
   def collect_defensive_league_averages
@@ -88,7 +100,7 @@ module PlayersHelper
     page
   end
 
-  def simulate_lineup(my_url)
+  def simulate_lineup(my_url, game)
     page = nil
     results = {}
     if my_url == ""
@@ -109,8 +121,10 @@ module PlayersHelper
     @salary_limit = 60000
     @pppg_target = 90
 
-    dla = collect_defensive_league_averages
-    tds = collect_team_defensive_stats
+    unless game
+      dla = collect_defensive_league_averages
+      tds = collect_team_defensive_stats
+    end
     page.css("tr[id*='playerListPlayerId']").each do |tr|
       pos, name, fppg, played, fixture, salary = tr.xpath('./td')
       salary = salary.text.gsub(/\D/,'').to_i
@@ -121,16 +135,23 @@ module PlayersHelper
       else
         opp = opposing_team[1].split("<")[0]
       end
-      team_opp = SportsPlayer.abbreviations[opp.to_sym]
-      index = tds.index(team_opp)
-      pl, pr, pp = 2, 6, 9
-      ypl, ypr, ypp = (index + pl), (index + pr), (index + pp)
-      la_ypl, la_ypr, la_ypp = dla[pl], dla[pr], dla[pp]
-      opp_ypl, opp_ypr, opp_ypp = tds[ypl], tds[ypr], tds[ypp]
-      p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary,
-                          next_opp: opp, opp_ypl: opp_ypl, la_ypl: la_ypl, opp_ypr: opp_ypr, la_ypr: la_ypr,
-                          opp_ypp: opp_ypp, la_ypp: la_ypp)
-      @players.push(p)
+      team_opp = game ? SportsPlayer.basketball[opp.to_sym] : SportsPlayer.abbreviations[opp.to_sym]
+
+      if game.nil?
+        index = tds.index(team_opp)
+        pl, pr, pp = 2, 6, 9
+        ypl, ypr, ypp = (index + pl), (index + pr), (index + pp)
+        la_ypl, la_ypr, la_ypp = dla[pl], dla[pr], dla[pp]
+        opp_ypl, opp_ypr, opp_ypp = tds[ypl], tds[ypr], tds[ypp]
+        p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary,
+                            next_opp: opp, opp_ypl: opp_ypl, la_ypl: la_ypl, opp_ypr: opp_ypr, la_ypr: la_ypr,
+                            opp_ypp: opp_ypp, la_ypp: la_ypp)
+        @players.push(p)
+      else
+        p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary,
+                             next_opp: opp)
+        @players.push(p)
+      end
     end
 
     loop do
