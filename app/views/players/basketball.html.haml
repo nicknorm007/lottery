@@ -14,7 +14,7 @@
   %p
     %br/
     Enter your game URL:
-    = text_field_tag(:my_url, nil, maxlength: 96, size: 96, :id => 'my_url')
+    = text_field_tag(:my_url, nil, maxlength: 96, size: 96, :id => 'my_url_basket')
     %br/
     %br/
     = link_to @lineup_basket, players_fantasybasketball_path, :remote => true , :id => "simlineupbasket" , :class => "btn btn-primary" , method: :post
