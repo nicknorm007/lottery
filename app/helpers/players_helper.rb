@@ -64,6 +64,11 @@ module PlayersHelper
     team_averages = []
     oddshark_url = 'http://www.oddsshark.com/nfl/defensive-stats'
     page = Nokogiri::HTML(open(oddshark_url))
+    team_averages = nfl_team_averages(page, team_averages)
+    team_averages
+  end
+
+  def nfl_team_averages(page, team_averages)
     page.css("#chalk tr > td > a[href*='stats/team/football']").each do |node|
       team = node.text
       team_averages.push(team.strip!)
@@ -84,7 +89,7 @@ module PlayersHelper
   def make_selection(position, picks)
     picks.times do
       pick = rand(0..@players.length-1)
-      until (@players[pick].pos == position.to_s && @players[pick].name[-1..-1] !~ /O|Q|A|R|D/ && @players[pick].salary > 4500 )
+      until (@players[pick].pos == position.to_s && @players[pick].name[-1..-1] !~ /O|Q|A|R|D/ && @players[pick].salary > @min_salary )
         pick = rand(0..@players.length-1)
       end
       @playlist.push(@players[pick])
@@ -120,14 +125,45 @@ module PlayersHelper
     @total_fppg = 0
     @salary_limit = 60000
     @pppg_target = 90
+    @min_salary = 3500
 
     unless game
       dla = collect_defensive_league_averages
       tds = collect_team_defensive_stats
     end
+    collect_players(dla, game, page, tds)
+
+    optimize_lineup(game)
+
+    results = {list: @playlist, fppg: @total_fppg, salary: @total_salary}
+    results
+  end
+
+  def optimize_lineup(game)
+    loop do
+      @total_salary = 0
+      @total_fppg = 0
+      @playlist = []
+      if game.nil?
+        @pppg_target = 100
+        @min_salary = 4500
+        pick_players(QB: 1, RB: 2, WR: 3, TE: 1, K: 1, D: 1)
+        break if (((@total_salary > (@salary_limit - 1000) && (@total_salary <= @salary_limit))) && ((@total_fppg > @pppg_target) &&
+            (@total_fppg <= @pppg_target + 20)) && (@playlist.uniq.length == @playlist.length))
+      else
+        @pppg_target = 250
+        @min_salary = 3800
+        pick_players(PG: 2, SG: 2, SF: 2, PF: 2, C: 1)
+        break if (((@total_salary > (@salary_limit - 1000) && (@total_salary <= @salary_limit))) && ((@total_fppg > @pppg_target) &&
+            (@total_fppg <= @pppg_target + 60)) && (@playlist.uniq.length == @playlist.length))
+      end
+    end
+  end
+
+  def collect_players(dla, game, page, tds)
     page.css("tr[id*='playerListPlayerId']").each do |tr|
       pos, name, fppg, played, fixture, salary = tr.xpath('./td')
-      salary = salary.text.gsub(/\D/,'').to_i
+      salary = salary.text.gsub(/\D/, '').to_i
       fppg = fppg.text.to_i
       opposing_team = fixture.to_html.split("@")
       if (opposing_team[1] =~ /<b>/)
@@ -136,7 +172,6 @@ module PlayersHelper
         opp = opposing_team[1].split("<")[0]
       end
       team_opp = game ? SportsPlayer.basketball[opp.to_sym] : SportsPlayer.abbreviations[opp.to_sym]
-
       if game.nil?
         index = tds.index(team_opp)
         pl, pr, pp = 2, 6, 9
@@ -144,8 +179,8 @@ module PlayersHelper
         la_ypl, la_ypr, la_ypp = dla[pl], dla[pr], dla[pp]
         opp_ypl, opp_ypr, opp_ypp = tds[ypl], tds[ypr], tds[ypp]
         p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary,
-                            next_opp: opp, opp_ypl: opp_ypl, la_ypl: la_ypl, opp_ypr: opp_ypr, la_ypr: la_ypr,
-                            opp_ypp: opp_ypp, la_ypp: la_ypp)
+                             next_opp: opp, opp_ypl: opp_ypl, la_ypl: la_ypl, opp_ypr: opp_ypr, la_ypr: la_ypr,
+                             opp_ypp: opp_ypp, la_ypp: la_ypp)
         @players.push(p)
       else
         p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary,
@@ -153,18 +188,6 @@ module PlayersHelper
         @players.push(p)
       end
     end
-
-    loop do
-      @total_salary = 0
-      @total_fppg = 0
-      @playlist = []
-      pick_players(QB: 1, RB: 2, WR: 3, TE: 1, K: 1, D: 1)
-      break if ( ((@total_salary > (@salary_limit - 1000) && (@total_salary <= @salary_limit) )) && ( (@total_fppg > @pppg_target) &&
-          (@total_fppg <= @pppg_target + 20) ) && (@playlist.uniq.length == @playlist.length))
-    end
-
-    results = {list: @playlist, fppg: @total_fppg, salary: @total_salary}
-    results
   end
 
 end
