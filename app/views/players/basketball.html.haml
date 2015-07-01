@@ -1,22 +1,4 @@
 .lotterylabels
   Use this simulation to simulate fantasy basketball lineups for a chosen game.  You can create an account at
   %a{:href => "http://www.fanduel.com)", :style => "color: #CC0000"} Fanduel
-  to play each week. Then, you can use the tool below
-  to create sample lineups for the game to save you time in coming up with your own.  These lineups will optimize
-  the salary cap and fppg to give you some playable options to work with.  Injured players and questionable statuses will
-  NOT be included.  Players with a 'P' at the end of their name were on the injury report but are probable. Salary max limit is $60,000.
-  Favorable player matchups against the league average will be highlighted for you.
-  %br/
-  Submit a URL for the game you want to simulate.  Example format :
-  %br/
-  %br/
-  %a{:href => "", :style => "color: #CC0000"} https://www.fanduel.com/e/Game/{Your Game ID}?tableId={Your ID}&fromLobby=true
-  %p
-    %br/
-    Enter your game URL:
-    = text_field_tag(:my_url, nil, maxlength: 96, size: 96, :id => 'my_url_basket')
-    %br/
-    %br/
-    = link_to @lineup_basket, players_fantasybasketball_path, :remote => true , :id => "simlineupbasket" , :class => "btn btn-primary" , method: :post
-  #simlineupmsgbasket
-  #simlineupresultbasket
+  to play each week. Come back in fall of 2015 for next season!

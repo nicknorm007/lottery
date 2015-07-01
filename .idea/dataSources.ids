@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="Rails lottery: development" uuid="15d11fbe-3ac0-4250-a1c7-3251b641919d">
+  <data-source name="Rails lottery: development" uuid="15d11fbe-3ac0-4250-a1c7-3251b641919d">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails lottery: test" uuid="0b2ef7cf-7adb-4a2b-b59a-dfca9644eec3">
+  <data-source name="Rails lottery: test" uuid="0b2ef7cf-7adb-4a2b-b59a-dfca9644eec3">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails lottery: production" uuid="b666214f-9787-4bcc-b871-41b8bf1f73e6">
+  <data-source name="Rails lottery: production" uuid="b666214f-9787-4bcc-b871-41b8bf1f73e6">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>

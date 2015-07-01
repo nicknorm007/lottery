@@ -2,10 +2,10 @@ module PlayersHelper
   require 'nokogiri'
   require 'open-uri'
   require 'json'
+  require 'csv'
 
   class SportsPlayer
-    attr_accessor :name, :pos, :salary, :status, :fixture, :fppg, :next_opp, :opp_ypl, :la_ypl,
-                  :opp_ypr, :la_ypr, :opp_ypp, :la_ypp
+    attr_accessor :name, :pos, :salary, :status, :fixture, :fppg, :next_opp, :injury
 
     def initialize(opts = {})
       @name = opts[:name]
@@ -15,71 +15,13 @@ module PlayersHelper
       @fppg = opts[:fppg]
       @fixture = opts[:fixture]
       @next_opp = opts[:next_opp]
-      @opp_ypl = opts[:opp_ypl]
-      @la_ypl = opts[:la_ypl]
-      @opp_ypr = opts[:opp_ypr]
-      @la_ypr = opts[:la_ypr]
-      @opp_ypp = opts[:opp_ypp]
-      @la_ypp = opts[:la_ypp]
+      @injury = opts[:injury]
     end
 
-    def self.abbreviations
-      abbrev = {NE: 'New England', BUF: 'Buffalo', MIA: 'Miami', NYJ: 'NY Jets',
-                SD: 'San Diego', DEN: 'Denver', KC: 'Kansas City', OAK: 'Oakland',
-                CIN: 'Cincinnati', CLE: 'Cleveland', BAL: 'Baltimore', PIT: 'Pittsburgh',
-                IND: 'Indianapolis', HOU: 'Houston', TEN: 'Tennessee', JAC: 'Jacksonville',
-                PHI: 'Philadelphia', NYG: 'NY Giants', WAS: 'Washington', DAL: 'Dallas',
-                ARI: 'Arizona', SEA: 'Seattle', SF: 'San Francisco', STL: 'St. Louis',
-                DET: 'Detroit', GB: 'Green Bay', MIN: 'Minnesota', CHI: 'Chicago',
-                CAR: 'Carolina', ATL: 'Atlanta', TB: 'Tampa Bay', NO: 'New Orleans'}
-      abbrev
+    def self.baseball_pos
+      {B1: '1B', B2: '2B', B3: '3B', SS: 'SS', C: 'C', P: 'P', OF: 'OF'}
     end
 
-    def self.basketball
-      abbrev = {OKC: 'Oklahoma City', NO: 'New Orleans', PHO: 'Phoenix', CLE: 'Cleveland',
-                ATL: 'Atlanta', PHI: 'Philadelphia', GS: 'Golden State', TOR: 'Toronto',
-                POR: 'Portland', BOS: 'Boston', WAS: 'Washington', CHI: 'Chicago',
-                BKN: 'Brooklyn', SA: 'San Antonio', MEM: 'Memphis', DET: 'Detroit',
-                ORL: 'Orlando', LAL: 'LA Lakers', LAC: 'LA Clippers', MIN: 'Minnesota',
-                HOU: 'Houston', MIA: 'Miami', MIL: 'Milwaukee', IND: 'Indiana',
-                NY: 'New York', DET: 'Detroit', CHA: 'Charlotte', UTA: 'Utah',
-                DAL: 'Dallas', SAC: 'Sacramento'}
-      abbrev
-    end
-
-  end
-
-  def collect_defensive_league_averages
-    league_averages = []
-    oddshark_url = 'http://www.oddsshark.com/nfl/defensive-stats'
-    page = Nokogiri::HTML(open(oddshark_url))
-    page.css("#chalk > tbody > tr:nth-child(18) > td").each do |node|
-      text = node.text
-      league_averages.push(text.to_f.round(2) == 0.0 ? text : text.to_f.round(2))
-    end
-    league_averages
-  end
-
-  def collect_team_defensive_stats
-    team_averages = []
-    oddshark_url = 'http://www.oddsshark.com/nfl/defensive-stats'
-    page = Nokogiri::HTML(open(oddshark_url))
-    team_averages = nfl_team_averages(page, team_averages)
-    team_averages
-  end
-
-  def nfl_team_averages(page, team_averages)
-    page.css("#chalk tr > td > a[href*='stats/team/football']").each do |node|
-      team = node.text
-      team_averages.push(team.strip!)
-      ele = node.parent
-      until (ele.next_element.nil?) do
-        tmp = ele.next_element
-        team_averages.push(tmp.text)
-        ele = tmp
-      end
-    end
-    team_averages
   end
 
   def pick_players(opts = {})
@@ -89,7 +31,7 @@ module PlayersHelper
   def make_selection(position, picks)
     picks.times do
       pick = rand(0..@players.length-1)
-      until (@players[pick].pos == position.to_s && @players[pick].name[-1..-1] !~ /O|Q|A|R|D/ && @players[pick].salary > @min_salary )
+      until (@players[pick].pos == SportsPlayer.baseball_pos[position] && @players[pick].injury == "" && @players[pick].salary > @min_salary )
         pick = rand(0..@players.length-1)
       end
       @playlist.push(@players[pick])
@@ -98,41 +40,22 @@ module PlayersHelper
     end
   end
 
-  def open_from_file
-    f = File.open("files/fanduel.html")
-    page = Nokogiri::HTML(f)
-    f.close
-    page
-  end
-
-  def simulate_lineup(my_url, game)
-    page = nil
+  def simulate_lineup(file, game, limit)
     results = {}
-    if my_url == ""
-      page = open_from_file
-    else
-      fanduel_url = my_url
-      begin
-        page = Nokogiri::HTML(open(fanduel_url))
-      rescue
-        results = {errors: "There was a problem reading the URL you entered."}
-        return results
-      end
+    rowArray = Array.new
+    myFile = params[:file]
+    CSV.foreach(myFile.path) do |row|
+      rowArray << row
+      @row_data = rowArray
     end
+
     @players = []
     @playlist = []
     @total_salary = 0
     @total_fppg = 0
-    @salary_limit = 60000
-    @pppg_target = 90
-    @min_salary = 3500
+    @salary_limit = limit.to_i
 
-    unless game
-      dla = collect_defensive_league_averages
-      tds = collect_team_defensive_stats
-    end
-    collect_players(dla, game, page, tds)
-
+    collect_players(game, @row_data)
     optimize_lineup(game)
 
     results = {list: @playlist, fppg: @total_fppg, salary: @total_salary}
@@ -144,50 +67,23 @@ module PlayersHelper
       @total_salary = 0
       @total_fppg = 0
       @playlist = []
-      if game.nil?
-        @pppg_target = 100
-        @min_salary = 4500
-        pick_players(QB: 1, RB: 2, WR: 3, TE: 1, K: 1, D: 1)
+      if game == 'baseball'
+        @pppg_target = 25
+        @min_salary = 2900
+        pick_players(P: 1, B2: 1, SS: 1, B1: 1, B3: 1, C: 1, OF: 3)
         break if (((@total_salary > (@salary_limit - 1000) && (@total_salary <= @salary_limit))) && ((@total_fppg > @pppg_target) &&
-            (@total_fppg <= @pppg_target + 20)) && (@playlist.uniq.length == @playlist.length))
-      else
-        @pppg_target = 250
-        @min_salary = 3800
-        pick_players(PG: 2, SG: 2, SF: 2, PF: 2, C: 1)
-        break if (((@total_salary > (@salary_limit - 1000) && (@total_salary <= @salary_limit))) && ((@total_fppg > @pppg_target) &&
-            (@total_fppg <= @pppg_target + 60)) && (@playlist.uniq.length == @playlist.length))
+            (@total_fppg <= @pppg_target + 30)) && (@playlist.uniq.length == @playlist.length))
       end
     end
   end
 
-  def collect_players(dla, game, page, tds)
-    page.css("tr[id*='playerListPlayerId']").each do |tr|
-      pos, name, fppg, played, fixture, salary = tr.xpath('./td')
-      salary = salary.text.gsub(/\D/, '').to_i
-      fppg = fppg.text.to_i
-      opposing_team = fixture.to_html.split("@")
-      if (opposing_team[1] =~ /<b>/)
-        opp = opposing_team[0].split(">")[1]
-      else
-        opp = opposing_team[1].split("<")[0]
-      end
-      team_opp = game ? SportsPlayer.basketball[opp.to_sym] : SportsPlayer.abbreviations[opp.to_sym]
-      if game.nil?
-        index = tds.index(team_opp)
-        pl, pr, pp = 2, 6, 9
-        ypl, ypr, ypp = (index + pl), (index + pr), (index + pp)
-        la_ypl, la_ypr, la_ypp = dla[pl], dla[pr], dla[pp]
-        opp_ypl, opp_ypr, opp_ypp = tds[ypl], tds[ypr], tds[ypp]
-        p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary,
-                             next_opp: opp, opp_ypl: opp_ypl, la_ypl: la_ypl, opp_ypr: opp_ypr, la_ypr: la_ypr,
-                             opp_ypp: opp_ypp, la_ypp: la_ypp)
-        @players.push(p)
-      else
-        p = SportsPlayer.new(name: name.text, pos: pos.text, fppg: fppg, fixture: fixture.text, salary: salary,
-                             next_opp: opp)
-        @players.push(p)
-      end
+  def collect_players(game, rows)
+    rows.each do |row|
+      p = SportsPlayer.new(name: row[1] + ' ' + row[2], pos: row[0], fppg: row[3].to_i, fixture: row[6], salary: row[5].to_i,
+                              next_opp: row[8], injury: row[9])
+      @players.push(p)
     end
+    @players
   end
 
 end
