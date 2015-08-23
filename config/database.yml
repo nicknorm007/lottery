@@ -20,7 +20,7 @@ development:
   database: lottery_development
   pool: 5
   username: nnorman
-  password:
+  password: nnorman
   host: localhost
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -50,7 +50,7 @@ test:
   database: lottery_test
   pool: 5
   username: nnorman
-  password:
+  password: nnorman
   host: localhost
 
 production:

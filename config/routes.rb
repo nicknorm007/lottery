@@ -1,3 +1,4 @@
+
 Lottery::Application.routes.draw do
 
   resources :accounts

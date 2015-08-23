@@ -79,8 +79,8 @@ module PlayersHelper
 
   def collect_players(game, rows)
     rows.each do |row|
-      p = SportsPlayer.new(name: row[1] + ' ' + row[2], pos: row[0], fppg: row[3].to_i, fixture: row[6], salary: row[5].to_i,
-                              next_opp: row[8], injury: row[9])
+      p = SportsPlayer.new(name: row[2] + ' ' + row[3], pos: row[1], fppg: row[4].to_i, fixture: row[7], salary: row[6].to_i,
+                              next_opp: row[9], injury: row[10])
       @players.push(p)
     end
     @players

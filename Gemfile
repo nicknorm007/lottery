@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
-ruby '2.1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
+gem 'pry-byebug'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.18.0.pre20141117110243'
 gem 'rails_12factor', group: :production
 
 # Use SCSS for stylesheets
@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-script-source', '1.8.0'
 gem 'simple_form'
 gem 'haml-rails'
 gem 'haml'
