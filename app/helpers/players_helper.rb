@@ -22,6 +22,10 @@ module PlayersHelper
       {B1: '1B', B2: '2B', B3: '3B', SS: 'SS', C: 'C', P: 'P', OF: 'OF'}
     end
 
+    def self.football_pos
+      {QB: 'QB', RB: 'RB', WR: 'WR', TE: 'TE', K: 'K', D: 'D'}
+    end
+
   end
 
   def pick_players(opts = {})
@@ -31,7 +35,7 @@ module PlayersHelper
   def make_selection(position, picks)
     picks.times do
       pick = rand(0..@players.length-1)
-      until (@players[pick].pos == SportsPlayer.baseball_pos[position] && @players[pick].injury == "" && @players[pick].salary > @min_salary )
+      until (@players[pick].pos == SportsPlayer.football_pos[position] && @players[pick].injury == "" && @players[pick].salary > @min_salary )
         pick = rand(0..@players.length-1)
       end
       @playlist.push(@players[pick])
@@ -71,6 +75,12 @@ module PlayersHelper
         @pppg_target = 25
         @min_salary = 2900
         pick_players(P: 1, B2: 1, SS: 1, B1: 1, B3: 1, C: 1, OF: 3)
+        break if (((@total_salary > (@salary_limit - 1000) && (@total_salary <= @salary_limit))) && ((@total_fppg > @pppg_target) &&
+            (@total_fppg <= @pppg_target + 30)) && (@playlist.uniq.length == @playlist.length))
+      elsif game == 'football'
+        @pppg_target = 90
+        @min_salary = 4500
+        pick_players(QB: 1, WR: 3, RB: 2, TE: 1, K: 1, D: 1)
         break if (((@total_salary > (@salary_limit - 1000) && (@total_salary <= @salary_limit))) && ((@total_fppg > @pppg_target) &&
             (@total_fppg <= @pppg_target + 30)) && (@playlist.uniq.length == @playlist.length))
       end

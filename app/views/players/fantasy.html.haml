@@ -1,4 +1,17 @@
 .lotterylabels
   Use this simulation to simulate fantasy football lineups for a chosen game.  You can create an account at
   %a{:href => "http://www.fanduel.com)", :style => "color: #CC0000"} Fanduel
-  to play each week. Come back in fall of 2015 for next season!
+  to play each week. Then, you can use the tool below
+  to create sample lineups for the game to save you time in coming up with your own.  These lineups will try to optimize
+  the salary cap and fppg to give you some playable options to work with.  Injured players and questionable statuses will
+  NOT be included. Salary max limit is $60,000.
+  %br/
+  %p
+    %br/
+    = form_tag players_fantasyresults_path, :multipart=>true do
+      = file_field_tag :file
+      = hidden_field_tag :limit, 60000
+      = hidden_field_tag :game, 'football'
+      = submit_tag "Upload your Fanduel CSV game file to generate lineup!", :class => "btn btn-primary"
+    %br/
+    %br/

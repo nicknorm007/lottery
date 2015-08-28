@@ -22,10 +22,9 @@ class PlayersController < ApplicationController
   end
 
   def fantasyresults
-    @results = {}
-    @results[:errors] = "placeholder for now"
+    @results = simulate_lineup(params[:file], params[:game], params[:limit])
     respond_to do |format|
-      format.html { render :partial => 'lineup'}
+      format.html { render :partial => 'baseball'}
     end
   end
 
