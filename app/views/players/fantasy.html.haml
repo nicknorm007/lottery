@@ -10,7 +10,7 @@
     %br/
     = form_tag players_fantasyresults_path, :multipart=>true do
       = file_field_tag :file
-      = hidden_field_tag :limit, 60000
+      = hidden_field_tag :minsalary, 4500, :target, 90, :limit, 60000 
       = hidden_field_tag :game, 'football'
       = submit_tag "Upload your Fanduel CSV game file to generate lineup!", :class => "btn btn-primary"
     %br/
