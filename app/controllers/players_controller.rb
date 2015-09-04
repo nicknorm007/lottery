@@ -24,9 +24,8 @@ class PlayersController < ApplicationController
   def fantasyresults
     row_data = read_row_data
     players = build_players_list row_data
-    player = SportsLineup.new(players, params[:minsalary], params[:limit], params[:target])
-    football_lineup = FootballLineup.new(player.players)
-    @results = player.simulate_lineup(football_lineup, players)
+    player = FootballLineup.new(players, params[:minsalary], params[:limit], params[:target])
+    @results = player.simulate_lineup(player)
     respond_to do |format|
       format.html { render :partial => 'lineup'}
     end
@@ -35,11 +34,10 @@ class PlayersController < ApplicationController
   def fantasybaseball
     row_data = read_row_data
     players = build_players_list row_data
-    player = SportsLineup.new(players,  params[:minsalary], params[:limit], params[:target])
-    baseball_lineup  = BaseballLineup.new(player.players)
-    @results =  player.simulate_lineup(baseball_lineup, players)
+    player = BaseballLineup.new(players, params[:minsalary], params[:limit], params[:target])
+    @results = player.simulate_lineup(player)
     respond_to do |format|
-      format.html { render :partial => 'lineup'}
+      format.html { render :partial => 'baseball'}
     end
   end
 
