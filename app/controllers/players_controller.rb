@@ -22,17 +22,42 @@ class PlayersController < ApplicationController
   end
 
   def fantasyresults
-    @results = simulate_lineup(params[:file], params[:game], params[:limit])
+    row_data = read_row_data
+    players = build_players_list row_data
+    player = FootballLineup.new(players, params[:minsalary], params[:limit], params[:target])
+    @results = player.simulate_lineup(player)
+    respond_to do |format|
+      format.html { render :partial => 'lineup'}
+    end
+  end
+
+  def fantasybaseball
+    row_data = read_row_data
+    players = build_players_list row_data
+    player = BaseballLineup.new(players, params[:minsalary], params[:limit], params[:target])
+    @results = player.simulate_lineup(player)
     respond_to do |format|
       format.html { render :partial => 'baseball'}
     end
   end
 
-  def fantasybaseball
-    @results = simulate_lineup(params[:file], params[:game], params[:limit])
-    respond_to do |format|
-      format.html { render :partial => 'baseball'}
+  def read_row_data
+    rowArray = Array.new
+    myFile = params[:file]
+    CSV.foreach(myFile.path) do |row|
+      rowArray << row
+      @row_data = rowArray
     end
+    @row_data
+  end
+
+  def build_players_list(row_data)
+    players = Array.new
+    row_data.each do |row|
+      players.push({name: row[2] + ' ' + row[3], pos: row[1], fppg: row[4].to_i, fixture: row[7], 
+        salary: row[6].to_i, next_opp: row[9], injury: row[10]})
+    end
+    players
   end
 
 end
